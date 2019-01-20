@@ -1,0 +1,6 @@
+fishpkg/fish-git-util
+fishpkg/fish-pwd-is-home
+fishpkg/fish-pwd-info
+fishpkg/fish-host-info
+fishpkg/fish-last-job-id
+fishpkg/fish-humanize-duration
