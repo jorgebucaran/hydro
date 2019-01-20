@@ -10,7 +10,7 @@ No bells and whistles, true minimal prompt for the [fish shell](https://fishshel
 With [Fisher](https://github.com/jorgebucaran/fisher):
 
 ```fish
-fisher add mono
+fisher add fishpkg/fish-prompt-mono
 ```
 
 ## Features
