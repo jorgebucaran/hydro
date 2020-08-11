@@ -1,4 +1,4 @@
-# fish-mono
+# Mono
 
 No bells or whistles, minimal prompt for [fish](https://fishshell.com).
 
