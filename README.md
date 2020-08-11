@@ -1,15 +1,15 @@
 # fish-mono
 
-No bells and whistles, true minimal prompt for the [fish shell](https://fishshell.com).
+No bells or whistles, minimal prompt for [fish](https://fishshell.com).
 
-![Mono](https://cloud.githubusercontent.com/assets/8317250/15419836/bfeddb0e-1ea3-11e6-9a56-21dc7dd79d4b.png)
-![Mono](https://cloud.githubusercontent.com/assets/8317250/15419851/f1925504-1ea3-11e6-9902-29f03b5101b4.png)
+![](https://cloud.githubusercontent.com/assets/8317250/15419836/bfeddb0e-1ea3-11e6-9a56-21dc7dd79d4b.png)
+![](https://cloud.githubusercontent.com/assets/8317250/15419851/f1925504-1ea3-11e6-9902-29f03b5101b4.png)
 
 ## Installation
 
 With [Fisher](https://github.com/jorgebucaran/fisher):
 
-```fish
+```console
 fisher add fishpkg/fish-prompt-mono
 ```
 
