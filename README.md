@@ -1,6 +1,6 @@
 # Fly.fish
 
-No bells or whistles, minimal prompt for [Fish](https://fishshell.com).
+No bells or whistles commandline prompt for [Fish](https://fishshell.com)—works for me. YMMV.
 
 ```console
 ~ % fly.fish/
