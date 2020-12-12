@@ -5,8 +5,7 @@ Unobtrusive, minimal command-line prompt for [Fish](https://fishshell.com) that 
 ```console
 ~ % fly.fish/
 fly.fish (main*) % git add -A && git commit -m Done
-fly.fish (main) % false
-fly.fish (main) ! ⎢
+fly.fish (main) % ⎢
 ```
 
 ## Features
