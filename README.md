@@ -1,6 +1,6 @@
 # Fly.fish
 
-No bells or whistles command-line prompt for [Fish](https://fishshell.com)—it works for me. YMMV.
+No bells or whistles command-line prompt for [Fish](https://fishshell.com)—it works for me!
 
 ```console
 ~ % fly.fish/
