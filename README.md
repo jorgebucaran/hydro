@@ -2,11 +2,10 @@
 
 No bells or whistles command-line prompt for [Fish](https://fishshell.com)—it works for me. YMMV.
 
-![FLYFISH](https://user-images.githubusercontent.com/56996/101988332-400d0980-3cdc-11eb-8256-49acd297e8a5.png)
-
 ```console
 ~ % fly.fish/
-fly.fish % (master*) ⎢
+fly.fish % (main*) git add -A && git commit -m Done
+fly.fish % (main) ⎢
 ```
 
 ## Features
