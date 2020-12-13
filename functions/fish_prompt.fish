@@ -31,12 +31,12 @@ function _fly_fish_prompt --on-event fish_prompt
             exit
         end
 
-        set info \"(\$branch\"
+        set info \"✓\"
         ! command git diff --no-ext-diff --quiet --exit-code 2>/dev/null || \
         ! command git diff --no-ext-diff --quiet --exit-code --cached 2>/dev/null && \
-            set info \"\$info*\"
+            set info \"*\"
 
-        set --universal _fly_git_status_$fish_pid \"\$info) \"
+        set --universal _fly_git_status_$fish_pid \"\$info \"
     " &
 end   
 
