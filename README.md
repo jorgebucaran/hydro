@@ -2,9 +2,9 @@
 
 Unobtrusive, minimal command-line prompt for [Fish](https://fishshell.com) that flies~%!
 
-```console
+```fish
 ~ % fly.fish/
-~/fly.fish (main*) % git add -A && git commit -m Ready
+~/fly.fish (main*) % git add -A && git commit -m Fly
 ~/fly.fish (main) % false
 ~/fly.fish (main) [1] ⎢
 ```
