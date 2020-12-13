@@ -30,6 +30,7 @@ function _fly_fish_prompt --on-event fish_prompt
             command git describe --tags --exact-match HEAD 2>/dev/null || \
             command git rev-parse --short HEAD 2>/dev/null
         )
+            count (command git ls-files --others --exclude-standard) >/dev/null ||
             ! command git diff --no-ext-diff --quiet --exit-code 2>/dev/null || \
             ! command git diff --no-ext-diff --quiet --exit-code --cached 2>/dev/null && \
                 set --universal $_fly_git_status \"(\$branch$_fly_color_error*$_fly_color_reset) \" || \
