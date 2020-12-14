@@ -1,4 +1,4 @@
-# Fly.fish
+# Fly
 
 Unobtrusive, minimal command-line prompt for [Fish](https://fishshell.com) that flies~%!
 
