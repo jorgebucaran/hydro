@@ -6,7 +6,7 @@ function fish_prompt
         && set --local prompt % \
         || set --local prompt "$_fly_color_error"[(string join "|" $_status)]
 
-    echo -n "$_fly_color_reset$_fly_pwdinfo $$_fly_git_status$_fly_color_reset$prompt "
+    echo -n "$_fly_color_reset$_fly_color_base$_fly_pwdinfo$_fly_color_reset $$_fly_git_status$_fly_color_reset$prompt "
 
     set --query _fly_init && set --erase _fly_init && _fly_fish_prompt && _fly_set_pwdinfo
 end

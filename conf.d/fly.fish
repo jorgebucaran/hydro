@@ -1,4 +1,5 @@
 set --global _fly_init
+set --global _fly_color_base (set_color $fish_color_command)
 set --global _fly_color_error (set_color $fish_color_error)
 set --global _fly_color_reset (set_color normal)
 
