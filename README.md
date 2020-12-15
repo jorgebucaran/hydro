@@ -12,12 +12,12 @@ Unobtrusive, minimal command-line prompt for [Fish](https://fishshell.com) that 
 
 ## Features
 
-- Last `$pipestatus`, e.g.: `[1]`, `[1|1|0]`, in `$fish_color_error`.
 - Unambiguous prompt and status—don't purely rely on color.
+- Last `$pipestatus` like `[1]`, `[1|1|0]`, and so on.
 - Blazing fast async Git branch and status.
   - `*` indicates staged, unstaged, or untracked files exist.
-  - `n↑` indicates `n` commits ahead of the remote HEAD.
-  - `n↓` indicates `n` commits behind of the remote HEAD.
+  - `↑n` indicates `n` commits ahead of the remote HEAD.
+  - `↓n` indicates `n` commits behind of the remote HEAD.
 - Short `$PWD`—show only what matters.
 - Sorry, no right prompt.
 
