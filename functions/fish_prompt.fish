@@ -50,7 +50,7 @@ function _fly_fish_prompt --on-event fish_prompt
 
         set --universal $_fly_git_status \"\$branch\$state\$upstream \"
 
-        command git fetch 2>/dev/null &
+        command git fetch --no-tags 2>/dev/null &
     " &
 end   
 
