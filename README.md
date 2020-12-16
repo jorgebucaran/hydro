@@ -1,6 +1,6 @@
 # Fly
 
-Unobtrusive, minimal, command-line prompt for [Fish](https://fishshell.com) with async Git status.
+Unobtrusive [Fish](https://fishshell.com) prompt with async Git status.
 
 ```shell
 ~ ❯ fly/
