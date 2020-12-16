@@ -1,4 +1,3 @@
-set --global _fly_git_status _fly_git_status_$fish_pid
 set --global _fly_init
 set --global _fly_color_dim (set_color --dim)
 set --global _fly_color_base (set_color $fish_color_command)

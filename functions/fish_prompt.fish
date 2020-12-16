@@ -1,3 +1,5 @@
+set --global _fly_git_status _fly_git_status_$fish_pid
+
 function fish_prompt
     set --local last_status $pipestatus
     set --query _fly_init && set --erase _fly_init && _fly_fish_prompt && _fly_set_pwdinfo
