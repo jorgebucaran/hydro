@@ -3,7 +3,7 @@ function fish_prompt
     set --query _fly_init && set --erase _fly_init && _fly_fish_prompt && _fly_set_pwdinfo
 
     test (math +$last_status) = 0 \
-        && set --local prompt $_fly_color_base$_fly_symbol_prompt \
+        && set --local prompt $_fly_color_dim$_fly_symbol_prompt \
         || set --local prompt "$_fly_color_error"[(
             string join "$_fly_color_dim|$_fly_color_reset$_fly_color_error" $last_status
         )]"$_fly_color_reset"
@@ -46,7 +46,7 @@ function _fly_fish_prompt --on-event fish_prompt
         ! git diff-index --quiet HEAD || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state \*
 
-        set --universal $_fly_git_status \"$_fly_color_dim\$branch\$state\$upstream$_fly_color_reset \"
+        set --universal $_fly_git_status \"\$branch\$state\$upstream \"
 
         command git fetch 2>/dev/null &
     " &
