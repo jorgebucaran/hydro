@@ -36,7 +36,7 @@ function _fly_fish_prompt --on-event fish_prompt
         command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead
         
         switch \"\$behind \$ahead\"
-            case \"\" \"0 0\"
+            case \" \" \"0 0\"
             case \"0 *\"
                 set upstream \" ↑\$ahead\"
             case \"* 0\"
