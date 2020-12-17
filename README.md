@@ -3,14 +3,14 @@
 Unobtrusive [Fish](https://fishshell.com) prompt with async Git status.
 
 ```console
-~ ❯ fly/
-~/fly main* ❯ git add -A && git commit -m Fly
-~/fly main ↑1 ❯ git push
+~ ❱ fly/
+~/fly main* ❱ git add -A && git commit -m Fly
+~/fly main ↑1 ❱ git push
 ...
-~/fly main 3s ❯ ..
-~ ❯ math 1/0
+~/fly main 3s ❱ ..
+~ ❱ math 1/0
 math: Error: Result is infinite
-~ ❯ [1] ⎢
+~ ❱ [1] ⎢
 ```
 
 ## Features
