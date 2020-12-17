@@ -6,8 +6,11 @@ Unobtrusive [Fish](https://fishshell.com) prompt with async Git status.
 ~ ❯ fly/
 ~/fly main* ❯ git add -A && git commit -m Fly
 ~/fly main ↑1 ❯ git push
-~/fly main ❯ false
-~/fly main [1] ⎢
+...
+~/fly main 3s ❯ ..
+~ ❯ math 1/0
+math: Error: Result is infinite
+~ ❯ [1] ⎢
 ```
 
 ## Features
