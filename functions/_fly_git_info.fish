@@ -21,7 +21,7 @@ function _fly_git_info --on-event fish_prompt
         ! git diff-index --quiet HEAD || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state \*
 
-        set --universal $_fly_git_info \"\$branch\$state\$upstream \"
+        set --universal $_fly_git_info \"$_fly_color_bold\$branch$_fly_color_reset$_fly_color_base\$state\$upstream \"
 
         command git fetch --no-tags 2>/dev/null &
     " &

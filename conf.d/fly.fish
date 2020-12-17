@@ -2,6 +2,7 @@ set --global _fly_symbol_prompt ❱
 set --global _fly_color_reset (set_color normal)
 set --global _fly_color_error (set_color $fish_color_error)
 set --global _fly_color_base (set_color $fish_color_command)
+set --global _fly_color_bold (set_color --bold)
 set --global _fly_color_dim (set_color --dim)
 set --global _fly_git_info _fly_git_info_$fish_pid
 
