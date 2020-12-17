@@ -6,5 +6,7 @@ function fish_prompt
             string join "$_fly_color_dim|$_fly_color_reset$_fly_color_error" $last_status
         )]"$_fly_color_reset"
 
-    echo -n "$_fly_color_base$_fly_pwd_info $$_fly_git_info$prompt$_fly_color_reset "
+    echo -n "$_fly_color_base$_fly_pwd_info $$_fly_git_info$_fly_duration$prompt$_fly_color_reset "
+
+    set --erase _fly_duration
 end

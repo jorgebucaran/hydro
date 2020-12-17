@@ -6,7 +6,26 @@ set --global _fly_color_dim (set_color --dim)
 set --global _fly_git_info _fly_git_info_$fish_pid
 
 function $_fly_git_info --on-variable $_fly_git_info
+    test "$CMD_DURATION" = "$_fly_cmd_duration[1]" && \
+        set --global _fly_duration $_fly_cmd_duration[2] && \
+        set --erase _fly_cmd_duration
     commandline --function repaint
+end
+
+function _fly_postexec --on-event fish_postexec
+    if test "$CMD_DURATION" -ge 1000
+        set --local secs (math --scale=0 $CMD_DURATION/1000 % 60)
+        set --local mins (math --scale=0 $CMD_DURATION/60000 % 60)
+        set --local hours (math --scale=0 $CMD_DURATION/3600000)
+
+        test $hours -gt 0 && set --local --append out $hours"h"
+        test $mins -gt 0 && set --local --append out $mins"m"
+        test $secs -gt 0 && set --local --append out $secs"s"
+
+        set --query out && \
+            set --global _fly_duration "$_fly_color_dim$out$_fly_color_reset$_fly_color_base "
+        set --global _fly_cmd_duration $CMD_DURATION $_fly_duration
+    end
 end
 
 function _fly_fish_exit --on-event fish_exit
