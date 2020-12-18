@@ -13,7 +13,7 @@ end
 function _fly_postexec --on-event fish_postexec
     test "$CMD_DURATION" -lt 1000 && set _fly_duration && return
 
-    set --local secs (math --scale=0 $CMD_DURATION/1000 % 60)
+    set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
     set --local mins (math --scale=0 $CMD_DURATION/60000 % 60)
     set --local hours (math --scale=0 $CMD_DURATION/3600000)
 
