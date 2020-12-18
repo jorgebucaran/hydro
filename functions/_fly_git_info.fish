@@ -9,7 +9,7 @@ function _fly_git_info --on-event fish_prompt
         ) && set $_fly_git_info && exit
 
         ! git diff-index --quiet HEAD || \
-        count (command git ls-files --others --exclude-standard) >/dev/null && set state \" •\"
+        count (command git ls-files --others --exclude-standard) >/dev/null && set state \" $_fly_symbol_git_dirty\"
             
         for step in fetch exit
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead

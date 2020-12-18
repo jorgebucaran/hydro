@@ -1,4 +1,5 @@
 set --global _fly_symbol_prompt ❱
+set --global _fly_symbol_git_dirty •
 set --global _fly_symbol_git_ahead ↑
 set --global _fly_symbol_git_behind ↓
 
