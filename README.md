@@ -4,7 +4,7 @@ Unobtrusive [Fish](https://fishshell.com) prompt with async Git status.
 
 ```console
 ~ ❱ fly/
-~/fly main* ❱ git add -A && git commit -m Fly
+~/fly main* ❱ git add --all && git commit --message Fly
 ~/fly main ↑1 ❱ git push
 ...
 ~/fly main 3s ❱ ..
