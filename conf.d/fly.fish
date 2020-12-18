@@ -1,4 +1,7 @@
 set --global _fly_symbol_prompt ❱
+set --global _fly_symbol_git_ahead ↑
+set --global _fly_symbol_git_behind ↓
+
 set --global _fly_color_reset (set_color normal)
 set --global _fly_color_error (set_color $fish_color_error)
 set --global _fly_color_base (set_color $fish_color_command)

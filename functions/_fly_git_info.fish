@@ -17,11 +17,11 @@ function _fly_git_info --on-event fish_prompt
             switch \"\$behind \$ahead\"
                 case \" \" \"0 0\"
                 case \"0 *\"
-                    set upstream \" ↑\$ahead\"
+                    set upstream \" $_fly_symbol_git_ahead\$ahead\"
                 case \"* 0\"
-                    set upstream \" ↓\$behind\"
+                    set upstream \" $_fly_symbol_git_behind\$behind\"
                 case \*
-                    set upstream \" ↑\$ahead ↓\$behind\"
+                    set upstream \" $_fly_symbol_git_ahead\$ahead $_fly_symbol_git_behind\$behind\"
             end
 
             set --universal $_fly_git_info \"$_fly_color_bold\$branch$_fly_color_reset$_fly_color_base\$state\$upstream \"
