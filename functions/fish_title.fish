@@ -1,3 +1,4 @@
-function fish_title -a last_cmd
-    echo $_fly_pwd_info (string replace --all -- \n "; " $last_cmd)
+function fish_title --argument-names last_cmd
+    string replace --all --regex -- \s\*\n "; " $last_cmd
+    string replace ~ " ~" $PWD
 end

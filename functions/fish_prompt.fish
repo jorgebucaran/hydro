@@ -1,10 +1,8 @@
 function fish_prompt
     set --local last_status $pipestatus
     test (math +$last_status) = 0 \
-        && set --local prompt $_fly_color_dim$_fly_symbol_prompt \
-        || set --local prompt "$_fly_color_error"[(
-            string join "$_fly_color_dim|$_fly_color_reset$_fly_color_error" $last_status
-        )]"$_fly_color_reset"
+        && set --local prompt "\x1b[2m$_fly_symbol_prompt\x1b[22m" \
+        || set --local prompt "$_fly_color_error"[(string join "\x1b[2m|\x1b[22m" $last_status)]
 
-    echo -n "$_fly_color_base$_fly_pwd_info $$_fly_git_info$_fly_duration$prompt$_fly_color_reset "
+    string unescape "$_fly_color_pwd$_fly_pwd_info $_fly_color_base$$_fly_git_info$_fly_cmd_duration$prompt\x1b[0m "
 end
