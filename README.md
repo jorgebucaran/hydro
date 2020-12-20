@@ -1,13 +1,13 @@
-# Fly
+# _Hydro_
 
-Unobtrusive [Fish](https://fishshell.com) prompt with async Git status.
+A [Fish](https://fishshell.com) prompt with async instant Git status.
 
 ```console
-~ ❱ fly/
-~/fly main* ❱ git add --all && git commit --message Fly
-~/fly main ↑1 ❱ git push
+~ ❱ hydro/
+~/hydro dev* ❱ git add --all && git commit --message Bugfix
+~/hydro dev ↑1 ❱ git push
 ...
-~/fly main 3s ❱ ..
+~/hydro dev 3s ❱ ..
 ~ ❱ math 1/0
 math: Error: Result is infinite
 ~ ❱ [1] ⎢
@@ -31,7 +31,7 @@ math: Error: Result is infinite
 Install with [Fisher](https://github.com/jorgebucaran/fisher):
 
 ```console
-fisher install jorgebucaran/fly
+fisher install jorgebucaran/hydro
 ```
 
 ## License

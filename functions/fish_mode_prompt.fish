@@ -16,6 +16,6 @@ function fish_mode_prompt
                 set vi_mode_color (set_color --reverse $fish_color_selection)
                 set vi_mode_symbol V
         end
-        echo -n "$vi_mode_color $vi_mode_symbol $_fly_color_reset "
+        echo -n "$vi_mode_color $vi_mode_symbol $_hydro_color_reset "
     end
 end
