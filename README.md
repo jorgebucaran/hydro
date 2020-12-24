@@ -12,67 +12,67 @@ fisher install jorgebucaran/hydro
 
 ## Features
 
-- Best prompt symbol ever.
+Best prompt symbol ever.
 
-  <pre>
-  <b>~</b> ❱ <b>⎢</b>
-  </pre>
+<pre>
+<b>~</b> ❱ <b>⎢</b>
+</pre>
 
-- Show Git branch name and status (prompt repaints asynchronously).
+Show Git branch name and status (prompt repaints asynchronously).
 
-  <pre>
-  ~/p/<b>hydro</b> main ❱ touch Solution
-  ~/p/<b>hydro</b> main• ❱ <b>⎢</b>
-  </pre>
+<pre>
+~/p/<b>hydro</b> main ❱ touch Solution
+~/p/<b>hydro</b> main• ❱ <b>⎢</b>
+</pre>
 
-  > `•` indicates that there are staged, unstaged or untracked files.
+> `•` indicates that there are staged, unstaged or untracked files.
 
-- Show how many commits you're ahead and/or behind of your upstream (prompt repaints asynchronously).
+Show how many commits you're ahead and/or behind of your upstream (prompt repaints asynchronously).
 
-  <pre>
-  ~/p/<b>hydro</b> main• ↓2 ❱ git commit -am Hotfix
-  ~/p/<b>hydro</b> main ↑1 ↓2 ❱ git pull --rebase && git push
-  ~/p/<b>hydro</b> main ❱ <b><b>⎢</b></b>
-  </pre>
+<pre>
+~/p/<b>hydro</b> main• ↓2 ❱ git commit -am Hotfix
+~/p/<b>hydro</b> main ↑1 ↓2 ❱ git pull --rebase && git push
+~/p/<b>hydro</b> main ❱ <b><b>⎢</b></b>
+</pre>
 
-- Show `$CMD_DURATION` if > `1` second.
+Show `$CMD_DURATION` if > `1` second.
 
-  <pre>
-  ~/p/<b>hydro</b> main ❱ git push --quiet
-  ~/p/<b>hydro</b> main 1.1s ❱ <b>⎢</b>
-  </pre>
+<pre>
+~/p/<b>hydro</b> main ❱ git push --quiet
+~/p/<b>hydro</b> main 1.1s ❱ <b>⎢</b>
+</pre>
 
-- Show `$pipestatus`.
+Show `$pipestatus`.
 
-  <pre>
-  ~/p/<b>hydro</b> main ❱ false
-  ~/p/<b>hydro</b> main ❱ [<b>1</b>]
-  ~/p/<b>hydro</b> main ❱ false | true | false
-  ~/p/<b>hydro</b> main [<b>1</b>|<b>0</b>|<b>1</b>] <b>⎢</b>
-  </pre>
+<pre>
+~/p/<b>hydro</b> main ❱ false
+~/p/<b>hydro</b> main ❱ [<b>1</b>]
+~/p/<b>hydro</b> main ❱ false | true | false
+~/p/<b>hydro</b> main [<b>1</b>|<b>0</b>|<b>1</b>] <b>⎢</b>
+</pre>
 
-- Truncate `$PWD` except for the current directory and Git root.
+Truncate `$PWD` except for the current directory and Git root.
 
-  <pre>
-  <b>~</b> ❱ projects/hydro/
-  ~/p/<b>hydro</b> ❱ functions/share
-  ~/p/hydro/f/<b>share</b> ❱ <b>⎢</b>
-  </pre>
+<pre>
+<b>~</b> ❱ projects/hydro/
+~/p/<b>hydro</b> ❱ functions/share
+~/p/hydro/f/<b>share</b> ❱ <b>⎢</b>
+</pre>
 
-- Show current bindings mode.
+Show current bindings mode.
 
-  <pre>
-  <i>I</i> <b>~</b> ❱ 
-  <i>N</i> <b>~</b> ❱
-  <i>R</i> <b>~</b> ❱
-  <i>V</i> <b>~</b> ❱
-  </pre>
+<pre>
+<i>I</i> <b>~</b> ❱ 
+<i>N</i> <b>~</b> ❱
+<i>R</i> <b>~</b> ❱
+<i>V</i> <b>~</b> ❱
+</pre>
 
-- Set terminal title to `$PWD` and currently running command.
+Set terminal title to `$PWD` and currently running command.
 
-  ```console
-  fish ~/projects/hydro
-  ```
+```console
+fish ~/projects/hydro
+```
 
 ## Configuration
 
