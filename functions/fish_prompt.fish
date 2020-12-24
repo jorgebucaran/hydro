@@ -8,7 +8,7 @@ function fish_prompt -d Hydro
 
     test (math +$last_status) = 0 \
         && set --local prompt "$_hydro_color_prompt$hydro_symbol_prompt" \
-        || set --local prompt "$_hydro_color_error"[(string join "\x1b[2m|\x1b[22m" $last_status)]
+        || set --local prompt "$_hydro_color_error\x1b[2m[\x1b[22m"(string join "\x1b[2m|\x1b[22m" $last_status)"\x1b[2m]\x1b[22m"
 
     echo -en "$_hydro_color_pwd$_hydro_pwd_info\x1b[0m $_hydro_color_git$$_hydro_git_info\x1b[0m$_hydro_color_duration$_hydro_cmd_duration\x1b[0m$prompt\x1b[0m "
 end
