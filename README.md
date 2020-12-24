@@ -2,17 +2,6 @@
 
 > Minimal, lag-free prompt with async Git status. Made for [Fish](https://fishshell.com).
 
-```console
-~ ❱ hydro/
-~/hydro dev• ❱ git add --all && git commit --message Hotfix
-~/hydro dev ↑1 ❱ git push
-...
-~/hydro dev 3s ❱ ..
-~ ❱ math 1/0
-math: Error: Result is infinite
-~ ❱ [1] ⎢
-```
-
 ## Installation
 
 Install with [Fisher](https://github.com/jorgebucaran/fisher):
@@ -23,15 +12,67 @@ fisher install jorgebucaran/hydro
 
 ## Features
 
-- Blazing fast async Git branch and status.
-  - `•` indicates you have staged, unstaged, or untracked files.
-  - `↑𝘕` indicates `𝘕` commits ahead of your upstream.
-  - `↓𝘕` indicates `𝘕` commits behind of your upstream.
-- Title set to `$PWD` and currently running command.
-- Show last command duration if > `1` second.
-- Show `$pipestatus`: `[1]`, `[1|0]`, etc.
 - Best prompt symbol ever.
-- vi-mode support! 👌
+
+  <pre>
+  <b>~</b> ❱ <b>⎢</b>
+  </pre>
+
+- Show Git branch name and status (prompt repaints asynchronously).
+
+  <pre>
+  ~/p/<b>hydro</b> main ❱ touch Solution
+  ~/p/<b>hydro</b> main• ❱ <b>⎢</b>
+  </pre>
+
+  > `•` indicates that there are staged, unstaged or untracked files.
+
+- Show how many commits you're ahead and/or behind of your upstream (prompt repaints asynchronously).
+
+  <pre>
+  ~/p/<b>hydro</b> main• ↓2 ❱ git commit -am Hotfix
+  ~/p/<b>hydro</b> main ↑1 ↓2 ❱ git pull --rebase && git push
+  ~/p/<b>hydro</b> main ❱ <b><b>⎢</b></b>
+  </pre>
+
+- Show `$CMD_DURATION` if > `1` second.
+
+  <pre>
+  ~/p/<b>hydro</b> main ❱ git push --quiet
+  ~/p/<b>hydro</b> main 1.1s ❱ <b>⎢</b>
+  </pre>
+
+- Show `$pipestatus`.
+
+  <pre>
+  ~/p/<b>hydro</b> main ❱ false
+  ~/p/<b>hydro</b> main ❱ [<b>1</b>]
+  ~/p/<b>hydro</b> main ❱ false | true | false
+  ~/p/<b>hydro</b> main [<b>1</b>|<b>0</b>|<b>1</b>] <b>⎢</b>
+  </pre>
+
+- Truncate `$PWD` except for the current directory and Git root.
+
+  <pre>
+  <b>~</b> ❱ projects/hydro/
+  ~/p/<b>hydro</b> ❱ functions/share
+  ~/p/hydro/f/<b>share</b> ❱ <b>⎢</b>
+  </pre>
+
+- Show current bindings mode.
+
+  <pre>
+  <i>I</i> <b>~</b> ❱ 
+  <i>N</i> <b>~</b> ❱
+  <i>R</i> <b>~</b> ❱
+  <i>V</i> <b>~</b> ❱
+  </pre>
+
+- Set terminal title to `$PWD` and currently running command.
+
+  ```console
+  fish ~/projects/hydro
+  ```
 
 ## Configuration
 
@@ -48,11 +89,11 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Colors
 
-| Variable            | Default               |
-| ------------------- | --------------------- |
-| `hydro_color_error` | `$fish_color_error`   |
-| `hydro_color_base`  | `$fish_color_command` |
-| `hydro_color_pwd`   | `$fish_color_command` |
+| Variable            | Default              |
+| ------------------- | -------------------- |
+| `hydro_color_error` | `$fish_color_error`  |
+| `hydro_color_base`  | `$fish_color_normal` |
+| `hydro_color_pwd`   | `$fish_color_normal` |
 
 ## License
 
