@@ -5,8 +5,12 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
-set --query hydro_color_base || set --global hydro_color_base $fish_color_command
-set --query hydro_color_pwd || set --global hydro_color_pwd $fish_color_command
+set --query hydro_color_base || set --global hydro_color_base $fish_color_normal
+set --query hydro_color_pwd || set --global hydro_color_pwd $fish_color_normal
+
+function $_hydro_git_info --on-variable $_hydro_git_info
+    commandline --function repaint
+end
 
 function _hydro_pwd_info --on-variable PWD
     set --local base (git rev-parse --show-toplevel 2>/dev/null | string replace --all --regex -- "^.*/" "")
@@ -18,10 +22,6 @@ function _hydro_pwd_info --on-variable PWD
         string replace --regex -- "(?!^~\$)([^/]*)\$" "\x1b[1m\$1\x1b[22m" | \
         string replace --regex --all -- / "\x1b[2m/\x1b[22m"
     )
-end
-
-function $_hydro_git_info --on-variable $_hydro_git_info
-    commandline --function repaint
 end
 
 function _hydro_git_info --on-event fish_prompt
