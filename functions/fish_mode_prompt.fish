@@ -1,5 +1,5 @@
 function fish_mode_prompt
-    if test $fish_key_bindings != fish_default_key_bindings
+    if test "$fish_key_bindings" != fish_default_key_bindings
         set --local vi_mode_color
         set --local vi_mode_symbol
         switch $fish_bind_mode
@@ -16,6 +16,6 @@ function fish_mode_prompt
                 set vi_mode_color (set_color --reverse $fish_color_selection)
                 set vi_mode_symbol V
         end
-        echo -n "$vi_mode_color $vi_mode_symbol $_hydro_color_reset "
+        echo -en "$vi_mode_color $vi_mode_symbol \x1b[0m "
     end
 end
