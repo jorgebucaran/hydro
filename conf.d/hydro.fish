@@ -4,11 +4,7 @@ set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
-
-set --query hydro_color_pwd || set --global hydro_color_pwd $fish_color_normal
-set --query hydro_color_git || set --global hydro_color_git $fish_color_normal
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
-set --query hydro_color_prompt || set --global hydro_color_prompt $fish_color_normal
 
 function $_hydro_git_info --on-variable $_hydro_git_info
     commandline --function repaint
@@ -71,7 +67,7 @@ function _hydro_postexec --on-event fish_postexec
     test $mins -gt 0 && set --local --append out $mins"m"
     test $secs -gt 0 && set --local --append out $secs"s"
 
-    set --global _hydro_cmd_duration "\x1b[2m$out\x1b[22m "
+    set --global _hydro_cmd_duration "$out "
 end
 
 function _hydro_fish_exit --on-event fish_exit
@@ -80,7 +76,7 @@ end
 
 function _hydro_uninstall --on-event hydro_uninstall
     set --names \
-        | string replace --filter --regex "^_hydro_" -- "set --erase _hydro_" \
+        | string replace --filter --regex "^(_?hydro_)" -- "set --erase \$1" \
         | source
     functions --erase $_hydro_git_info _hydro_{pwd_info,git_info,postexec,fish_exit,uninstall}
 end

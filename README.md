@@ -15,14 +15,14 @@ fisher install jorgebucaran/hydro
 Best prompt symbol ever.
 
 <pre>
-<b>~</b> ❱ <b>⎢</b>
+<b>~</b> ❱ ⎢
 </pre>
 
 Show Git branch name and status (prompt repaints asynchronously).
 
 <pre>
 ~/p/<b>hydro</b> main ❱ touch Solution
-~/p/<b>hydro</b> main• ❱ <b>⎢</b>
+~/p/<b>hydro</b> main• ❱ ⎢
 </pre>
 
 > `•` indicates that there are staged, unstaged or untracked files.
@@ -32,14 +32,14 @@ Show how many commits you're ahead and/or behind of your upstream (prompt repain
 <pre>
 ~/p/<b>hydro</b> main• ↓2 ❱ git commit -am Hotfix
 ~/p/<b>hydro</b> main ↑1 ↓2 ❱ git pull --rebase && git push
-~/p/<b>hydro</b> main ❱ <b><b>⎢</b></b>
+~/p/<b>hydro</b> main ❱ ⎢
 </pre>
 
 Show `$CMD_DURATION` if > `1` second.
 
 <pre>
 ~/p/<b>hydro</b> main ❱ git push --quiet
-~/p/<b>hydro</b> main 1.1s ❱ <b>⎢</b>
+~/p/<b>hydro</b> main 1.1s ❱ ⎢
 </pre>
 
 Show `$pipestatus`.
@@ -47,8 +47,8 @@ Show `$pipestatus`.
 <pre>
 ~/p/<b>hydro</b> main ❱ false
 ~/p/<b>hydro</b> main ❱ [<b>1</b>]
-~/p/<b>hydro</b> main ❱ false | true | false
-~/p/<b>hydro</b> main [<b>1</b>|<b>0</b>|<b>1</b>] <b>⎢</b>
+~/p/<b>hydro</b> main ❱ true | false | false
+~/p/<b>hydro</b> main [<b>0</b>|<b>1</b>|<b>1</b>] ⎢
 </pre>
 
 Truncate `$PWD` except for the current directory and Git root.
@@ -56,7 +56,7 @@ Truncate `$PWD` except for the current directory and Git root.
 <pre>
 <b>~</b> ❱ projects/hydro/
 ~/p/<b>hydro</b> ❱ functions/share
-~/p/hydro/f/<b>share</b> ❱ <b>⎢</b>
+~/p/hydro/f/<b>share</b> ❱ ⎢
 </pre>
 
 Show current bindings mode.
@@ -89,12 +89,13 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Colors
 
-| Variable             | Description                | Default              |
-| -------------------- | -------------------------- | -------------------- |
-| `hydro_color_pwd`    | color of the pwd segment   | `$fish_color_normal` |
-| `hydro_color_git`    | color of the git segment   | `$fish_color_normal` |
-| `hydro_color_error`  | color of the error segment | `$fish_color_error`  |
-| `hydro_color_prompt` | color of the prompt symbol | `$fish_color_normal` |
+| Variable               | Description                   | Default              |
+| ---------------------- | ----------------------------- | -------------------- |
+| `hydro_color_pwd`      | color of the pwd segment      | `$fish_color_normal` |
+| `hydro_color_git`      | color of the git segment      | `$fish_color_normal` |
+| `hydro_color_error`    | color of the error segment    | `$fish_color_error`  |
+| `hydro_color_prompt`   | color of the prompt symbol    | `$fish_color_normal` |
+| `hydro_color_duration` | color of the duration section | `$fish_color_normal` |
 
 ## License
 
