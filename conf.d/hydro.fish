@@ -4,9 +4,11 @@ set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
-set --query hydro_color_error || set --global hydro_color_error $fish_color_error
-set --query hydro_color_base || set --global hydro_color_base $fish_color_normal
+
 set --query hydro_color_pwd || set --global hydro_color_pwd $fish_color_normal
+set --query hydro_color_git || set --global hydro_color_git $fish_color_normal
+set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+set --query hydro_color_prompt || set --global s $fish_color_normal
 
 function $_hydro_git_info --on-variable $_hydro_git_info
     commandline --function repaint

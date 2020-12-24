@@ -89,11 +89,12 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Colors
 
-| Variable            | Default              |
-| ------------------- | -------------------- |
-| `hydro_color_error` | `$fish_color_error`  |
-| `hydro_color_base`  | `$fish_color_normal` |
-| `hydro_color_pwd`   | `$fish_color_normal` |
+| Variable             | Description                | Default              |
+| -------------------- | -------------------------- | -------------------- |
+| `hydro_color_pwd`    | color of pwd segment       | `$fish_color_normal` |
+| `hydro_color_git`    | color of git segment       | `$fish_color_normal` |
+| `hydro_color_error`  | color of the error segment | `$fish_color_error`  |
+| `hydro_color_prompt` | color of the prompt symbol | `$fish_color_normal` |
 
 ## License
 
