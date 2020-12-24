@@ -12,7 +12,7 @@ fisher install jorgebucaran/hydro
 
 ## Features
 
-Best prompt symbol ever.
+Excellent prompt symbol.
 
 <pre>
 <b>~</b> ❱ ⎢
@@ -72,6 +72,19 @@ Set terminal title to `$PWD` and currently running command.
 
 ```console
 fish ~/projects/hydro
+```
+
+## Performance
+
+Several times faster than the blink of an eye. Literally.
+
+```console
+~/llvm-project main ❱ time fish_prompt
+~/llvm-project main ❱ 
+________________________________________________________
+Executed in  900.00 micros    fish           external
+   usr time  664.00 micros  664.00 micros    0.00 micros
+   sys time  352.00 micros  352.00 micros    0.00 micros
 ```
 
 ## Configuration
