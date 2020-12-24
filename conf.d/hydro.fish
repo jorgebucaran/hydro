@@ -32,12 +32,12 @@ function _hydro_git_info --on-event fish_prompt
         ! set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
-            command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '\x1b[2m@\x1b[22m\$1'
+            command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
         ) && set $_hydro_git_info && exit
 
-        ! git diff-index --quiet HEAD || \
-        count (command git ls-files --others --exclude-standard) >/dev/null && set state \"$_hydro_symbol_git_dirty\"
-            
+        ! git diff-index --quiet HEAD 2>/dev/null || \
+        count (command git ls-files --others --exclude-standard) >/dev/null && set state $_hydro_symbol_git_dirty
+
         for step in fetch exit
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead
 

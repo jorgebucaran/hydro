@@ -1,10 +1,10 @@
-# _Hydro_
+# Hydro
 
-A [Fish](https://fishshell.com) prompt with async instant Git status.
+> Minimal, lag-free prompt with async Git status. Made for [Fish](https://fishshell.com).
 
 ```console
 ~ ❱ hydro/
-~/hydro dev* ❱ git add --all && git commit --message Bugfix
+~/hydro dev• ❱ git add --all && git commit --message Hotfix
 ~/hydro dev ↑1 ❱ git push
 ...
 ~/hydro dev 3s ❱ ..
@@ -16,7 +16,7 @@ math: Error: Result is infinite
 ## Features
 
 - Blazing fast async Git branch and status.
-  - `*` indicates you have staged, unstaged, or untracked files.
+  - `•` indicates you have staged, unstaged, or untracked files.
   - `↑𝘕` indicates `𝘕` commits ahead of your upstream.
   - `↓𝘕` indicates `𝘕` commits behind of your upstream.
 - Truncate `$PWD` prompt—supports [`$fish_prompt_pwd_dir_length`](https://fishshell.com/docs/current/cmds/prompt_pwd.html).
