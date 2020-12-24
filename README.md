@@ -80,12 +80,12 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Symbols
 
-| Variable                  | Default |
-| ------------------------- | ------- |
-| `hydro_symbol_prompt`     | ❱       |
-| `hydro_symbol_git_dirty`  | •       |
-| `hydro_symbol_git_ahead`  | ↑       |
-| `hydro_symbol_git_behind` | ↓       |
+| Variable                  | Description                    | Default |
+| ------------------------- | ------------------------------ | ------- |
+| `hydro_symbol_prompt`     | prompt symbol                  | ❱       |
+| `hydro_symbol_git_dirty`  | dirty repository symbol        | •       |
+| `hydro_symbol_git_ahead`  | ahead of your upstream symbol  | ↑       |
+| `hydro_symbol_git_behind` | behind of your upstream symbol | ↓       |
 
 ### Colors
 
