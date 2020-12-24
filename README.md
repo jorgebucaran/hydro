@@ -13,6 +13,14 @@ math: Error: Result is infinite
 ~ ❱ [1] ⎢
 ```
 
+## Installation
+
+Install with [Fisher](https://github.com/jorgebucaran/fisher):
+
+```console
+fisher install jorgebucaran/hydro
+```
+
 ## Features
 
 - Blazing fast async Git branch and status.
@@ -24,14 +32,6 @@ math: Error: Result is infinite
 - Show `$pipestatus`: `[1]`, `[1|0]`, etc.
 - Best prompt symbol ever.
 - vi-mode support! 👌
-
-## Installation
-
-Install with [Fisher](https://github.com/jorgebucaran/fisher):
-
-```console
-fisher install jorgebucaran/hydro
-```
 
 ## Configuration
 
