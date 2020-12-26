@@ -2,19 +2,6 @@ status is-interactive || exit
 
 set --global _hydro_git_info _hydro_git_info_$fish_pid
 
-set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
-set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
-set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
-set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
-set --query hydro_color_error || set --global hydro_color_error $fish_color_error
-
-for color in hydro_color_{pwd,git,error,prompt,duration}
-    function $color --on-variable $color --inherit-variable color
-        set --query $color && set --global _$color (set_color $$color)
-    end
-    set --query $color && $color
-end
-
 function $_hydro_git_info --on-variable $_hydro_git_info
     commandline --function repaint
 end
@@ -31,7 +18,31 @@ function _hydro_pwd_info --on-variable PWD
     )
 end
 
-function _hydro_git_info --on-event fish_prompt
+function _hydro_postexec --on-event fish_postexec
+    test "$CMD_DURATION" -lt 1000 && set _hydro_cmd_duration && return
+
+    set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
+    set --local mins (math --scale=0 $CMD_DURATION/60000 % 60)
+    set --local hours (math --scale=0 $CMD_DURATION/3600000)
+
+    test $hours -gt 0 && set --local --append out $hours"h"
+    test $mins -gt 0 && set --local --append out $mins"m"
+    test $secs -gt 0 && set --local --append out $secs"s"
+
+    set --global _hydro_cmd_duration "$out "
+end
+
+function _hydro_prompt --on-event fish_prompt
+    set --local last_status $pipestatus
+    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
+
+    for code in $last_status
+        if test $code -ne 0
+            set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            break
+        end
+    end
+
     command kill $_hydro_last_pid 2>/dev/null
 
     fish --private --command "
@@ -42,7 +53,7 @@ function _hydro_git_info --on-event fish_prompt
             command git describe --tags --exact-match HEAD 2>/dev/null ||
             command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
         )
-    
+
         test -z \"$$_hydro_git_info\" && set --universal $_hydro_git_info \"\$branch \"
 
         ! git diff-index --quiet HEAD 2>/dev/null || \
@@ -66,31 +77,8 @@ function _hydro_git_info --on-event fish_prompt
             test \$step = fetch && command git fetch --no-tags 2>/dev/null
         end
     " &
+
     set --global _hydro_last_pid (jobs --last --pid)
-end
-
-function _hydro_postexec --on-event fish_postexec
-    set --local last_status $pipestatus
-    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
-
-    for code in $last_status
-        if test $code -ne 0
-            set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
-            break
-        end
-    end
-
-    test "$CMD_DURATION" -lt 1000 && set _hydro_cmd_duration && return
-
-    set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
-    set --local mins (math --scale=0 $CMD_DURATION/60000 % 60)
-    set --local hours (math --scale=0 $CMD_DURATION/3600000)
-
-    test $hours -gt 0 && set --local --append out $hours"h"
-    test $mins -gt 0 && set --local --append out $mins"m"
-    test $secs -gt 0 && set --local --append out $secs"s"
-
-    set --global _hydro_cmd_duration "$out "
 end
 
 function _hydro_fish_exit --on-event fish_exit
@@ -104,4 +92,16 @@ function _hydro_uninstall --on-event hydro_uninstall
     functions --erase $_hydro_git_info _hydro_{pwd_info,git_info,postexec,fish_exit,uninstall}
 end
 
-_hydro_git_info && _hydro_pwd_info
+for color in hydro_color_{pwd,git,error,prompt,duration}
+    function $color --on-variable $color --inherit-variable color
+        set --query $color && set --global _$color (set_color $$color)
+    end
+end
+
+set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
+set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
+set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
+set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
+
+_hydro_prompt && _hydro_pwd_info

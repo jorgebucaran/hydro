@@ -48,29 +48,28 @@ Show `$pipestatus`.
 ~/p/<b>hydro</b> main ❱ false
 ~/p/<b>hydro</b> main ❱ [<b>1</b>]
 ~/p/<b>hydro</b> main ❱ true | false | false
-~/p/<b>hydro</b> main [<b>0</b>|<b>1</b>|<b>1</b>] ⎢
+~/p/<b>hydro</b> main [<b>0</b>ǀ<b>1</b>ǀ<b>1</b>] ⎢
 </pre>
 
 Truncate `$PWD` except for the current directory and Git root.
 
 <pre>
 <b>~</b> ❱ projects/hydro/
-~/p/<b>hydro</b> ❱ functions/share
+~/p/<b>hydro</b> ❱ functions/share/
 ~/p/hydro/f/<b>share</b> ❱ ⎢
 </pre>
 
 Show current bindings mode.
 
 <pre>
-<i>I</i> <b>~</b> ❱ 
-<i>N</i> <b>~</b> ❱
-<i>R</i> <b>~</b> ❱
-<i>V</i> <b>~</b> ❱
+<i>I</i> <b>~</b> ❱ ⎢ <kbd>Esc</kbd>
+<i>N</i> <b>~</b> ❱ ⎢ <kbd>R</kbd>
+<i>R</i> <b>~</b> ❱ ⎢
 </pre>
 
-Set terminal title to `$PWD` and currently running command.
+We even set the terminal title to `$PWD` and the currently running command.
 
-```console
+```
 fish ~/projects/hydro
 ```
 
@@ -78,14 +77,14 @@ fish ~/projects/hydro
 
 Fast would be an understatement. Whoa!
 
-```console
-~/llvm-project main ❱ time fish_prompt
-~/llvm-project main ❱
+<pre>
+~/<b>llvm-project</b> main ❱ time fish_prompt
+~/<b>llvm-project</b> main ❱
 ________________________________________________________
-Executed in   74.00 micros    fish           external
-   usr time   67.00 micros   67.00 micros    0.00 micros
-   sys time    8.00 micros    8.00 micros    0.00 micros
-```
+Executed in   79.00 micros    fish           external
+   usr time   71.00 micros   71.00 micros    0.00 micros
+   sys time    9.00 micros    9.00 micros    0.00 micros
+</pre>
 
 ## Configuration
 
