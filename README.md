@@ -2,7 +2,7 @@
 
 > Minimal, lag-free prompt with async Git status. Designed for [Fish](https://fishshell.com).
 
-![Hydro](https://user-images.githubusercontent.com/56996/103155286-abc59b00-47e1-11eb-92c6-0d47eb9540a2.png)
+![Hydro](https://user-images.githubusercontent.com/56996/103155532-2d1e2d00-47e4-11eb-9d47-0e366c1c5386.png)
 
 ## Installation
 
