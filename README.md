@@ -82,9 +82,9 @@ Several times faster than the blink of an eye. Literally.
 ~/llvm-project main ❱ time fish_prompt
 ~/llvm-project main ❱ 
 ________________________________________________________
-Executed in  900.00 micros    fish           external
-   usr time  664.00 micros  664.00 micros    0.00 micros
-   sys time  352.00 micros  352.00 micros    0.00 micros
+Executed in  190.00 micros    fish           external
+   usr time  130.00 micros  130.00 micros    0.00 micros
+   sys time   60.00 micros   60.00 micros    0.00 micros
 ```
 
 ## Configuration
