@@ -2,7 +2,7 @@
 
 > Minimal, lag-free prompt with async Git status. Designed for [Fish](https://fishshell.com).
 
-![Hydro](https://user-images.githubusercontent.com/56996/103155532-2d1e2d00-47e4-11eb-9d47-0e366c1c5386.png)
+![Hydro](https://user-images.githubusercontent.com/56996/103157446-357f6380-47f6-11eb-8060-dd1392a0ef79.gif)
 
 ## Installation
 
@@ -14,13 +14,13 @@ fisher install jorgebucaran/hydro
 
 ## Features
 
-One prompt symbol to rule them all. [You can change it too](#configuration).
+One prompt symbol to rule them all. [Change it](#configuration).
 
 <pre>
 <b>~</b> ❱ ⎢
 </pre>
 
-Show Git branch name and status (prompt repaints asynchronously).
+Show Git branch name and status—prompt repaints asynchronously!
 
 <pre>
 ~/p/<b>hydro</b> main ❱ touch Solution
@@ -29,7 +29,7 @@ Show Git branch name and status (prompt repaints asynchronously).
 
 > `•` indicates that there are staged, unstaged or untracked files.
 
-Show how many commits you're ahead and/or behind of your upstream (prompt repaints asynchronously).
+Show how many commits you're ahead and/or behind of your upstream—prompt repaints asynchronously!
 
 <pre>
 ~/p/<b>hydro</b> main• ↓2 ❱ git commit -am Hotfix
@@ -44,7 +44,7 @@ Show `$CMD_DURATION` if > `1` second.
 ~/p/<b>hydro</b> main 1.1s ❱ ⎢
 </pre>
 
-Show `$pipestatus`.
+Show the last `$pipestatus`.
 
 <pre>
 ~/p/<b>hydro</b> main ❱ false
@@ -53,7 +53,7 @@ Show `$pipestatus`.
 ~/p/<b>hydro</b> main [<b>0</b>ǀ<b>1</b>ǀ<b>1</b>] ⎢
 </pre>
 
-Truncate `$PWD` except for the current directory and Git root.
+Truncate `$PWD` segments except for the basename and root of Git repos.
 
 <pre>
 <b>~</b> ❱ projects/hydro/
@@ -77,7 +77,7 @@ fish ~/projects/hydro
 
 ## Performance
 
-Fast would be an understatement, considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
+Blazing fast would be an understatement, considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
 
 <pre>
 ~/<b>llvm-project</b> main ❱ time fish_prompt
