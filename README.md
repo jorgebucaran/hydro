@@ -76,15 +76,15 @@ fish ~/projects/hydro
 
 ## Performance
 
-Several times faster than the blink of an eye. Literally.
+Fast would be an understatement. Whoa!
 
 ```console
 ~/llvm-project main ❱ time fish_prompt
-~/llvm-project main ❱ 
+~/llvm-project main ❱
 ________________________________________________________
-Executed in  190.00 micros    fish           external
-   usr time  130.00 micros  130.00 micros    0.00 micros
-   sys time   60.00 micros   60.00 micros    0.00 micros
+Executed in   74.00 micros    fish           external
+   usr time   67.00 micros   67.00 micros    0.00 micros
+   sys time    8.00 micros    8.00 micros    0.00 micros
 ```
 
 ## Configuration
