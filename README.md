@@ -2,6 +2,8 @@
 
 > Minimal, lag-free prompt with async Git status. Designed for [Fish](https://fishshell.com).
 
+![Hydro](https://user-images.githubusercontent.com/56996/103155286-abc59b00-47e1-11eb-92c6-0d47eb9540a2.png)
+
 ## Installation
 
 Install with [Fisher](https://github.com/jorgebucaran/fisher):
@@ -12,7 +14,7 @@ fisher install jorgebucaran/hydro
 
 ## Features
 
-Excellent prompt symbol.
+One prompt symbol to rule them all. [You can change it too](#configuration).
 
 <pre>
 <b>~</b> ❱ ⎢
@@ -62,8 +64,8 @@ Truncate `$PWD` except for the current directory and Git root.
 Show current bindings mode.
 
 <pre>
-<i>I</i> <b>~</b> ❱ ⎢ <kbd>Esc</kbd>
-<i>N</i> <b>~</b> ❱ ⎢ <kbd>R</kbd>
+<i>I</i> <b>~</b> ❱ <kbd>Esc</kbd>
+<i>N</i> <b>~</b> ❱ <kbd>R</kbd>
 <i>R</i> <b>~</b> ❱ ⎢
 </pre>
 
@@ -75,7 +77,7 @@ fish ~/projects/hydro
 
 ## Performance
 
-Fast would be an understatement. Whoa!
+Fast would be an understatement, considering that the LLVM repo has over 375,000 commits!
 
 <pre>
 ~/<b>llvm-project</b> main ❱ time fish_prompt
