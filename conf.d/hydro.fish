@@ -39,7 +39,9 @@ function _hydro_git_info --on-event fish_prompt
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
             command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
-        ) && set $_hydro_git_info && exit
+        ) && set --erase $_hydro_git_info && exit
+    
+        set --query $_hydro_git_info[1] || set --universal $_hydro_git_info \"\$branch \"
 
         ! git diff-index --quiet HEAD 2>/dev/null || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state $hydro_symbol_git_dirty
