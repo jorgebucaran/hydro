@@ -77,7 +77,7 @@ fish ~/projects/hydro
 
 ## Performance
 
-Fast would be an understatement, considering that the LLVM repo has over 375,000 commits!
+Fast would be an understatement, considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
 
 <pre>
 ~/<b>llvm-project</b> main ❱ time fish_prompt
