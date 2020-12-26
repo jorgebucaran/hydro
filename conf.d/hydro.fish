@@ -70,6 +70,16 @@ function _hydro_git_info --on-event fish_prompt
 end
 
 function _hydro_postexec --on-event fish_postexec
+    set --local last_status $pipestatus
+    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
+
+    for code in $last_status
+        if test $code -ne 0
+            set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            break
+        end
+    end
+
     test "$CMD_DURATION" -lt 1000 && set _hydro_cmd_duration && return
 
     set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
