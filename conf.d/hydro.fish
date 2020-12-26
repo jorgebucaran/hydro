@@ -1,3 +1,5 @@
+status is-interactive || exit
+
 set --global _hydro_git_info _hydro_git_info_$fish_pid
 
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
@@ -5,6 +7,13 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+
+for color in hydro_color_{pwd,git,error,prompt,duration}
+    function $color --on-variable $color --inherit-variable color
+        set --query $color && set --global _$color (set_color $$color)
+    end
+    set --query $color && $color
+end
 
 function $_hydro_git_info --on-variable $_hydro_git_info
     commandline --function repaint
@@ -81,4 +90,4 @@ function _hydro_uninstall --on-event hydro_uninstall
     functions --erase $_hydro_git_info _hydro_{pwd_info,git_info,postexec,fish_exit,uninstall}
 end
 
-status is-interactive && _hydro_pwd_info && _hydro_git_info
+_hydro_git_info && _hydro_pwd_info
