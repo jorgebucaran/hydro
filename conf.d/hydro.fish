@@ -1,14 +1,14 @@
 status is-interactive || exit
 
-set --global _hydro_git_info _hydro_git_info_$fish_pid
+set --global _hydro_git _hydro_git_info_$fish_pid
 
-function $_hydro_git_info --on-variable $_hydro_git_info
+function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
 end
 
-function _hydro_pwd_info --on-variable PWD
+function _hydro_pwd --on-variable PWD
     set --local base (git rev-parse --show-toplevel 2>/dev/null | string replace --all --regex -- "^.*/" "")
-    set --global _hydro_pwd_info (
+    set --global _hydro_pwd (
         string replace --ignore-case -- ~ \~ $PWD | \
         string replace -- "/$base/" /:/ | \
         string replace --regex --all -- "(\.?[^/]{1})[^/]*/" \$1/ | \
@@ -46,7 +46,7 @@ function _hydro_prompt --on-event fish_prompt
     command kill $_hydro_last_pid 2>/dev/null
 
     fish --private --command "
-        ! git --no-optional-locks rev-parse 2>/dev/null && set $_hydro_git_info && exit
+        ! git --no-optional-locks rev-parse 2>/dev/null && set $_hydro_git && exit
 
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
@@ -54,7 +54,7 @@ function _hydro_prompt --on-event fish_prompt
             command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
         )
 
-        test -z \"$$_hydro_git_info\" && set --universal $_hydro_git_info \"\$branch \"
+        test -z \"$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
         ! git diff-index --quiet HEAD 2>/dev/null || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state $hydro_symbol_git_dirty
@@ -72,7 +72,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git_info \"\$branch\$state\$upstream \"
+            set --universal $_hydro_git \"\$branch\$state\$upstream \"
 
             test \$step = fetch && command git fetch --no-tags 2>/dev/null
         end
@@ -82,14 +82,14 @@ function _hydro_prompt --on-event fish_prompt
 end
 
 function _hydro_fish_exit --on-event fish_exit
-    set --erase $_hydro_git_info
+    set --erase $_hydro_git
 end
 
 function _hydro_uninstall --on-event hydro_uninstall
     set --names \
         | string replace --filter --regex "^(_?hydro_)" -- "set --erase \$1" \
         | source
-    functions --erase $_hydro_git_info _hydro_{pwd_info,git_info,postexec,fish_exit,uninstall}
+    functions --erase (functions --all | string match --entire --regex "^_hydro_")
 end
 
 for color in hydro_color_{pwd,git,error,prompt,duration}
@@ -104,4 +104,4 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 
-_hydro_prompt && _hydro_pwd_info
+_hydro_prompt && _hydro_pwd
