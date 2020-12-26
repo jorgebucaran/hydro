@@ -7,12 +7,13 @@ function $_hydro_git --on-variable $_hydro_git
 end
 
 function _hydro_pwd --on-variable PWD
-    set --local base (git rev-parse --show-toplevel 2>/dev/null | string replace --all --regex -- "^.*/" "")
+    set --local root (command git rev-parse --show-toplevel 2>/dev/null | \
+        string replace --all --regex -- "^.*/" "")
     set --global _hydro_pwd (
         string replace --ignore-case -- ~ \~ $PWD | \
-        string replace -- "/$base/" /:/ | \
+        string replace -- "/$root/" /:/ | \
         string replace --regex --all -- "(\.?[^/]{1})[^/]*/" \$1/ | \
-        string replace -- : "$base" | \
+        string replace -- : "$root" | \
         string replace --regex -- "(?!^~\$)([^/]*)\$" "\x1b[1m\$1\x1b[22m" | \
         string replace --regex --all -- / "\x1b[2m/\x1b[22m"
     )
@@ -46,7 +47,7 @@ function _hydro_prompt --on-event fish_prompt
     command kill $_hydro_last_pid 2>/dev/null
 
     fish --private --command "
-        ! git --no-optional-locks rev-parse 2>/dev/null && set $_hydro_git && exit
+        ! command git --no-optional-locks rev-parse 2>/dev/null && set $_hydro_git && exit
 
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
@@ -56,7 +57,7 @@ function _hydro_prompt --on-event fish_prompt
 
         test -z \"$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
-        ! git diff-index --quiet HEAD 2>/dev/null || \
+        ! command git diff-index --quiet HEAD 2>/dev/null || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state $hydro_symbol_git_dirty
 
         for step in fetch exit
