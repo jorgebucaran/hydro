@@ -1,6 +1,6 @@
 status is-interactive || exit
 
-set --global _hydro_git _hydro_git_info_$fish_pid
+set --global _hydro_git _hydro_git_$fish_pid
 
 function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
@@ -55,7 +55,7 @@ function _hydro_prompt --on-event fish_prompt
             command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
         )
 
-        test -z \"$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
+        set --universal $_hydro_git (string replace --regex -- '^[^$hydro_symbol_git_dirty ]+' \$branch \$$_hydro_git)
 
         ! command git diff-index --quiet HEAD 2>/dev/null || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state \"$hydro_symbol_git_dirty\"
