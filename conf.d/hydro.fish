@@ -17,6 +17,7 @@ function _hydro_pwd --on-variable PWD
         string replace --regex -- "(?!^~\$)([^/]*)\$" "\x1b[1m\$1\x1b[22m" | \
         string replace --regex --all -- / "\x1b[2m/\x1b[22m"
     )
+    test "$root" != "$_hydro_git_root" && set --global _hydro_git_root $root && set $_hydro_git
 end
 
 function _hydro_postexec --on-event fish_postexec
@@ -55,7 +56,7 @@ function _hydro_prompt --on-event fish_prompt
             command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
         )
 
-        set --universal $_hydro_git (string replace --regex -- '^[^$hydro_symbol_git_dirty ]+' \$branch \$$_hydro_git)
+        test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
         ! command git diff-index --quiet HEAD 2>/dev/null || \
         count (command git ls-files --others --exclude-standard) >/dev/null && set state \"$hydro_symbol_git_dirty\"
