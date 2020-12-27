@@ -14,8 +14,8 @@ function _hydro_pwd --on-variable PWD
         string replace -- "/$root/" /:/ | \
         string replace --regex --all -- "(\.?[^/]{1})[^/]*/" \$1/ | \
         string replace -- : "$root" | \
-        string replace --regex -- "(?!^~\$)([^/]*)\$" "\x1b[1m\$1\x1b[22m" | \
-        string replace --regex --all -- / "\x1b[2m/\x1b[22m"
+        string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" | \
+        string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
     )
     test "$root" != "$_hydro_git_root" && set --global _hydro_git_root $root && set $_hydro_git
 end
@@ -59,7 +59,7 @@ function _hydro_prompt --on-event fish_prompt
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
         ! command git diff-index --quiet HEAD 2>/dev/null || \
-        count (command git ls-files --others --exclude-standard) >/dev/null && set state \"$hydro_symbol_git_dirty\"
+        count (command git ls-files --others --exclude-standard) >/dev/null && set info \"$hydro_symbol_git_dirty\"
 
         for step in fetch exit
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead
@@ -74,7 +74,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git \"\$branch\$state\$upstream \"
+            set --universal $_hydro_git \"\$branch\$info\$upstream \"
 
             test \$step = fetch && command git fetch --no-tags 2>/dev/null
         end
@@ -89,7 +89,7 @@ end
 
 function _hydro_uninstall --on-event hydro_uninstall
     set --names \
-        | string replace --filter --regex "^(_?hydro_)" -- "set --erase \$1" \
+        | string replace --filter --regex -- "^(_?hydro_)" -- "set --erase \$1" \
         | source
     functions --erase (functions --all | string match --entire --regex "^_hydro_")
 end
