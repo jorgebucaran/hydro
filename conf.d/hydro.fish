@@ -89,9 +89,9 @@ end
 
 function _hydro_uninstall --on-event hydro_uninstall
     set --names \
-        | string replace --filter --regex -- "^(_?hydro_)" -- "set --erase \$1" \
+        | string replace --filter --regex -- "^(_?hydro_)" "set --erase \$1" \
         | source
-    functions --erase (functions --all | string match --entire --regex "^_hydro_")
+    functions --erase (functions --all | string match --entire --regex "^_?hydro_")
 end
 
 for color in hydro_color_{pwd,git,error,prompt,duration}
