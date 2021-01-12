@@ -54,7 +54,8 @@ function _hydro_prompt --on-event fish_prompt
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
-            command git rev-parse --short HEAD 2>/dev/null | string replace --regex -- '(.+)' '@\$1'
+            command git rev-parse --short HEAD 2>/dev/null |
+                string replace --regex -- '(.+)' '@\$1'
         )
 
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
@@ -64,7 +65,8 @@ function _hydro_prompt --on-event fish_prompt
             set info \"$hydro_symbol_git_dirty\"
 
         for fetch in $hydro_fetch false
-            command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead
+            command git rev-list --count --left-right @{upstream}...@ 2>/dev/null |
+                read behind ahead
 
             switch \"\$behind \$ahead\"
                 case \" \" \"0 0\"
