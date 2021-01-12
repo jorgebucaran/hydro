@@ -111,6 +111,12 @@ Modify variables using `set --universal` from the command line or `set --global`
 | `hydro_color_prompt`   | color of the prompt symbol    | `$fish_color_normal` |
 | `hydro_color_duration` | color of the duration section | `$fish_color_normal` |
 
+### Flags
+
+| Variable      | Type    | Description                         | Default |
+| ------------- | ------- | ----------------------------------- | ------- |
+| `hydro_fetch` | boolean | Fetch git remote in the background. | `false` |
+
 ## License
 
 [MIT](LICENSE.md)

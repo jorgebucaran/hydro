@@ -63,7 +63,7 @@ function _hydro_prompt --on-event fish_prompt
             count (command git ls-files --others --exclude-standard) >/dev/null &&
             set info \"$hydro_symbol_git_dirty\"
 
-        for step in fetch exit
+        for fetch in $hydro_fetch false
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null | read behind ahead
 
             switch \"\$behind \$ahead\"
@@ -78,7 +78,7 @@ function _hydro_prompt --on-event fish_prompt
 
             set --universal $_hydro_git \"\$branch\$info\$upstream \"
 
-            test \$step = fetch && command git fetch --no-tags 2>/dev/null
+            test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
     " &
 
