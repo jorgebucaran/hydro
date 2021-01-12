@@ -101,7 +101,7 @@ end
 for color in hydro_color_{pwd,git,error,prompt,duration}
     function $color --on-variable $color --inherit-variable color
         set --query $color && set --global _$color (set_color $$color)
-    end
+    end && $color
 end
 
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
