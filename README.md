@@ -1,6 +1,6 @@
 # Hydro
 
-> Minimal, lag-free prompt with async Git status. Designed for [Fish](https://fishshell.com).
+> Ultra-pure, lag-free prompt with async Git status. Designed for [Fish](https://fishshell.com).
 
 ![Hydro](https://user-images.githubusercontent.com/56996/103166797-f807ee00-4868-11eb-9818-c661584274c8.gif)
 
