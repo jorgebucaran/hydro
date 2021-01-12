@@ -115,7 +115,7 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 | Variable      | Type    | Description                         | Default |
 | ------------- | ------- | ----------------------------------- | ------- |
-| `hydro_fetch` | boolean | Fetch git remote in the background. | `false` |
+| `hydro_fetch` | boolean | Fetch git remote in the background | `false` |
 
 ## License
 
