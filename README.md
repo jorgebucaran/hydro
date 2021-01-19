@@ -77,7 +77,7 @@ fish ~/projects/hydro
 
 ## Performance
 
-Blazing fast would be an understatement, considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
+Blazing fast would be an understatement considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
 
 <pre>
 ~/<b>llvm-project</b> main ❱ time fish_prompt
@@ -94,27 +94,29 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Symbols
 
-| Variable                  | Description                    | Default |
-| ------------------------- | ------------------------------ | ------- |
-| `hydro_symbol_prompt`     | prompt symbol                  | ❱       |
-| `hydro_symbol_git_dirty`  | dirty repository symbol        | •       |
-| `hydro_symbol_git_ahead`  | ahead of your upstream symbol  | ↑       |
-| `hydro_symbol_git_behind` | behind of your upstream symbol | ↓       |
+| Variable                  | Type   | Description                    | Default |
+| ------------------------- | ------ | ------------------------------ | ------- |
+| `hydro_symbol_prompt`     | string | prompt symbol                  | ❱       |
+| `hydro_symbol_git_dirty`  | string | dirty repository symbol        | •       |
+| `hydro_symbol_git_ahead`  | string | ahead of your upstream symbol  | ↑       |
+| `hydro_symbol_git_behind` | string | behind of your upstream symbol | ↓       |
 
 ### Colors
 
-| Variable               | Description                   | Default              |
-| ---------------------- | ----------------------------- | -------------------- |
-| `hydro_color_pwd`      | color of the pwd segment      | `$fish_color_normal` |
-| `hydro_color_git`      | color of the git segment      | `$fish_color_normal` |
-| `hydro_color_error`    | color of the error segment    | `$fish_color_error`  |
-| `hydro_color_prompt`   | color of the prompt symbol    | `$fish_color_normal` |
-| `hydro_color_duration` | color of the duration section | `$fish_color_normal` |
+> Any argument accepted by [`set_color`](https://fishshell.com/docs/current/cmds/set_color.html).
+
+| Variable               | Type  | Description                   | Default              |
+| ---------------------- | ----- | ----------------------------- | -------------------- |
+| `hydro_color_pwd`      | color | color of the pwd segment      | `$fish_color_normal` |
+| `hydro_color_git`      | color | color of the git segment      | `$fish_color_normal` |
+| `hydro_color_error`    | color | color of the error segment    | `$fish_color_error`  |
+| `hydro_color_prompt`   | color | color of the prompt symbol    | `$fish_color_normal` |
+| `hydro_color_duration` | color | color of the duration section | `$fish_color_normal` |
 
 ### Flags
 
-| Variable      | Type    | Description                         | Default |
-| ------------- | ------- | ----------------------------------- | ------- |
+| Variable      | Type    | Description                        | Default |
+| ------------- | ------- | ---------------------------------- | ------- |
 | `hydro_fetch` | boolean | Fetch git remote in the background | `false` |
 
 ## License
