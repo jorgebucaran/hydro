@@ -37,6 +37,7 @@ end
 
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
+    set --query _hydro_pwd || _hydro_pwd
     set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
 
     for code in $last_status
@@ -110,4 +111,3 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 
-_hydro_prompt && _hydro_pwd
