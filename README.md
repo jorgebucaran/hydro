@@ -2,7 +2,7 @@
 
 > Ultra-pure, lag-free prompt with async Git status. Designed for [Fish](https://fishshell.com).
 
-![Hydro](https://user-images.githubusercontent.com/56996/103166797-f807ee00-4868-11eb-9818-c661584274c8.gif)
+[![](https://user-images.githubusercontent.com/56996/103166797-f807ee00-4868-11eb-9818-c661584274c8.gif)](#hydro)
 
 ## Installation
 
@@ -20,7 +20,7 @@ One prompt symbol to rule them all. [Change it](#configuration).
 <b>~</b> ❱ ⎢
 </pre>
 
-Show Git branch name and status—prompt repaints asynchronously!
+Show Git branch name and status—prompt repaints asynchronously! ✨
 
 <pre>
 ~/p/<b>hydro</b> main ❱ touch Solution
@@ -29,7 +29,7 @@ Show Git branch name and status—prompt repaints asynchronously!
 
 > `•` indicates that there are staged, unstaged or untracked files.
 
-Show how many commits you're ahead and/or behind of your upstream—prompt repaints asynchronously!
+Show how many commits you're ahead and/or behind of your upstream—prompt repaints asynchronously! ✨
 
 <pre>
 ~/p/<b>hydro</b> main• ↓2 ❱ git commit -am Hotfix
@@ -69,7 +69,7 @@ Show current bindings mode.
 <i>R</i> <b>~</b> ❱ ⎢
 </pre>
 
-We even set the terminal title to `$PWD` and the currently running command.
+We even set the terminal title to `$PWD` and the currently running command for you.
 
 ```
 fish ~/projects/hydro
@@ -94,30 +94,30 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Symbols
 
-| Variable                  | Type   | Description                    | Default |
-| ------------------------- | ------ | ------------------------------ | ------- |
-| `hydro_symbol_prompt`     | string | prompt symbol                  | ❱       |
-| `hydro_symbol_git_dirty`  | string | dirty repository symbol        | •       |
-| `hydro_symbol_git_ahead`  | string | ahead of your upstream symbol  | ↑       |
-| `hydro_symbol_git_behind` | string | behind of your upstream symbol | ↓       |
+| Variable                  | Type   | Description                     | Default |
+| ------------------------- | ------ | ------------------------------- | ------- |
+| `hydro_symbol_prompt`     | string | Prompt symbol.                  | ❱       |
+| `hydro_symbol_git_dirty`  | string | Dirty repository symbol.        | •       |
+| `hydro_symbol_git_ahead`  | string | Ahead of your upstream symbol.  | ↑       |
+| `hydro_symbol_git_behind` | string | Behind of your upstream symbol. | ↓       |
 
 ### Colors
 
 > Any argument accepted by [`set_color`](https://fishshell.com/docs/current/cmds/set_color.html).
 
-| Variable               | Type  | Description                   | Default              |
-| ---------------------- | ----- | ----------------------------- | -------------------- |
-| `hydro_color_pwd`      | color | color of the pwd segment      | `$fish_color_normal` |
-| `hydro_color_git`      | color | color of the git segment      | `$fish_color_normal` |
-| `hydro_color_error`    | color | color of the error segment    | `$fish_color_error`  |
-| `hydro_color_prompt`   | color | color of the prompt symbol    | `$fish_color_normal` |
-| `hydro_color_duration` | color | color of the duration section | `$fish_color_normal` |
+| Variable               | Type  | Description                    | Default              |
+| ---------------------- | ----- | ------------------------------ | -------------------- |
+| `hydro_color_pwd`      | color | Color of the pwd segment.      | `$fish_color_normal` |
+| `hydro_color_git`      | color | Color of the git segment.      | `$fish_color_normal` |
+| `hydro_color_error`    | color | Color of the error segment.    | `$fish_color_error`  |
+| `hydro_color_prompt`   | color | Color of the prompt symbol.    | `$fish_color_normal` |
+| `hydro_color_duration` | color | Color of the duration section. | `$fish_color_normal` |
 
 ### Flags
 
-| Variable      | Type    | Description                        | Default |
-| ------------- | ------- | ---------------------------------- | ------- |
-| `hydro_fetch` | boolean | Fetch git remote in the background | `false` |
+| Variable      | Type    | Description                         | Default |
+| ------------- | ------- | ----------------------------------- | ------- |
+| `hydro_fetch` | boolean | Fetch git remote in the background. | `false` |
 
 ## License
 
