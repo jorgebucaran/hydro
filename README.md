@@ -94,30 +94,33 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Symbols
 
-| Variable                  | Type   | Description                     | Default |
-| ------------------------- | ------ | ------------------------------- | ------- |
-| `hydro_symbol_prompt`     | string | Prompt symbol.                  | ❱       |
-| `hydro_symbol_git_dirty`  | string | Dirty repository symbol.        | •       |
-| `hydro_symbol_git_ahead`  | string | Ahead of your upstream symbol.  | ↑       |
-| `hydro_symbol_git_behind` | string | Behind of your upstream symbol. | ↓       |
+| Variable                    | Type   | Description                                    | Default |
+| --------------------------- | ------ | ---------------------------------------------- | ------- |
+| `hydro_symbol_prompt`       | string | Prompt symbol.                                 | ❱       |
+| `hydro_symbol_prompt_error` | string | Prompt symbol when an error occurs (if shown). | ❱       |
+| `hydro_symbol_git_dirty`    | string | Dirty repository symbol.                       | •       |
+| `hydro_symbol_git_ahead`    | string | Ahead of your upstream symbol.                 | ↑       |
+| `hydro_symbol_git_behind`   | string | Behind of your upstream symbol.                | ↓       |
 
 ### Colors
 
 > Any argument accepted by [`set_color`](https://fishshell.com/docs/current/cmds/set_color.html).
 
-| Variable               | Type  | Description                    | Default              |
-| ---------------------- | ----- | ------------------------------ | -------------------- |
-| `hydro_color_pwd`      | color | Color of the pwd segment.      | `$fish_color_normal` |
-| `hydro_color_git`      | color | Color of the git segment.      | `$fish_color_normal` |
-| `hydro_color_error`    | color | Color of the error segment.    | `$fish_color_error`  |
-| `hydro_color_prompt`   | color | Color of the prompt symbol.    | `$fish_color_normal` |
-| `hydro_color_duration` | color | Color of the duration section. | `$fish_color_normal` |
+| Variable                     | Type  | Description                                     | Default              |
+| ---------------------------- | ----- | ----------------------------------------------- | -------------------- |
+| `hydro_color_pwd`            | color | Color of the pwd segment.                       | `$fish_color_normal` |
+| `hydro_color_git`            | color | Color of the git segment.                       | `$fish_color_normal` |
+| `hydro_color_error`          | color | Color of the error segment.                     | `$fish_color_error`  |
+| `hydro_color_prompt`         | color | Color of the prompt symbol.                     | `$fish_color_normal` |
+| `hydro_color_prompt_error`   | color | Color of the prompt symbol on error (if shown). | `$fish_color_error`  |
+| `hydro_color_duration`       | color | Color of the duration section.                  | `$fish_color_normal` |
 
 ### Flags
 
-| Variable      | Type    | Description                         | Default |
-| ------------- | ------- | ----------------------------------- | ------- |
-| `hydro_fetch` | boolean | Fetch git remote in the background. | `false` |
+| Variable                            | Type    | Description                                                        | Default |
+| ----------------------------------- | ------- | ------------------------------------------------------------------ | ------- |
+| `hydro_fetch`                       | boolean | Fetch git remote in the background.                                | `false` |
+| `hydro_show_prompt_symbol_on_error` | boolean | Show the prompt symbol after the error segment if an error occurs. | `false` |
 
 ## License
 

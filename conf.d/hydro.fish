@@ -43,6 +43,7 @@ function _hydro_prompt --on-event fish_prompt
     for code in $last_status
         if test $code -ne 0
             set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            test "$hydro_show_prompt_symbol_on_error" = true && set --append _hydro_prompt "$_hydro_color_prompt_error$hydro_symbol_prompt_error"
             break
         end
     end
@@ -99,14 +100,16 @@ function _hydro_uninstall --on-event hydro_uninstall
     functions --erase (functions --all | string match --entire --regex "^_?hydro_")
 end
 
-for color in hydro_color_{pwd,git,error,prompt,duration}
+for color in hydro_color_{pwd,git,error,prompt,prompt_error,duration}
     function $color --on-variable $color --inherit-variable color
         set --query $color && set --global _$color (set_color $$color)
     end && $color
 end
 
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+set --query hydro_color_prompt_error || set --global hydro_color_prompt_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
+set --query hydro_symbol_prompt_error || set --global hydro_symbol_prompt_error ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
