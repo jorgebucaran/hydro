@@ -85,6 +85,8 @@ function _hydro_prompt --on-event fish_prompt
         end
     " &
 
+    disown
+
     set --global _hydro_last_pid (jobs --last --pid)
 end
 
@@ -110,4 +112,3 @@ set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
-
