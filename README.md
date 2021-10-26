@@ -115,9 +115,10 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Flags
 
-| Variable      | Type    | Description                         | Default |
-| ------------- | ------- | ----------------------------------- | ------- |
-| `hydro_fetch` | boolean | Fetch git remote in the background. | `false` |
+| Variable                | Type    | Description                                | Default |
+| ----------------------- | ------- | ------------------------------------------ | ------- |
+| `hydro_fetch`           | boolean | Fetch git remote in the background.        | `false` |
+| `hydro_two_line_prompt` | boolean | Display prompt character on a second line. | `false` |
 
 ## License
 

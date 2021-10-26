@@ -38,7 +38,12 @@ end
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
     set --query _hydro_pwd || _hydro_pwd
-    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
+    
+    if $hydro_two_line_prompt
+     set --global _hydro_prompt \n"$_hydro_color_prompt$hydro_symbol_prompt"
+    else 
+     set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
+    end
 
     for code in $last_status
         if test $code -ne 0
@@ -108,6 +113,7 @@ for color in hydro_color_{pwd,git,error,prompt,duration}
 end
 
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+set --query hydro_two_line_prompt || set --global hydro_two_line_prompt false
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
