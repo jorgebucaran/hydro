@@ -37,19 +37,20 @@ end
 
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
+    set --local _error_display_fragment
     set --query _hydro_pwd || _hydro_pwd
-    
-    if $hydro_two_line_prompt
-     set --global _hydro_prompt \n"$_hydro_color_prompt$hydro_symbol_prompt"
-    else 
-     set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
-    end
 
     for code in $last_status
         if test $code -ne 0
-            set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            set _error_display_fragment "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
             break
         end
+    end
+
+    if $hydro_two_line_prompt
+     set --global _hydro_prompt "$_error_display_fragment"\n"$_hydro_color_prompt$hydro_symbol_prompt"
+    else 
+     set --global _hydro_prompt "$_error_display_fragment $_hydro_color_prompt$hydro_symbol_prompt"
     end
 
     command kill $_hydro_last_pid 2>/dev/null
