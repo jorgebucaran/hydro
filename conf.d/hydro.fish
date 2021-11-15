@@ -90,8 +90,6 @@ function _hydro_prompt --on-event fish_prompt
         end
     " &
 
-    disown
-
     set --global _hydro_last_pid (jobs --last --pid)
 end
 
