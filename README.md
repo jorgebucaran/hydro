@@ -120,6 +120,13 @@ Modify variables using `set --universal` from the command line or `set --global`
 | `hydro_fetch`     | boolean | Fetch git remote in the background.          | `false` |
 | `hydro_multiline` | boolean | Display prompt character on a separate line. | `false` |
 
+### Misc
+
+| Variable                     | Type    | Description                                              | Default |
+| ---------------------------- | ------- | -------------------------------------------------------- | ------- |
+| `fish_prompt_pwd_dir_length` | numeric | The number of characters to display when path shortening | 1       |
+
+
 ## License
 
 [MIT](LICENSE.md)
