@@ -38,11 +38,11 @@ end
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
     set --query _hydro_pwd || _hydro_pwd
-    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
+    set --global _hydro_prompt "$_hydro_color_prompt$_hydro_newline$hydro_symbol_prompt"
 
     for code in $last_status
         if test $code -ne 0
-            set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            set _hydro_prompt "$_hydro_newline$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
             break
         end
     end
@@ -105,8 +105,17 @@ for color in hydro_color_{pwd,git,error,prompt,duration}
     end && $color
 end
 
+function hydro_multiline --on-variable hydro_multiline
+    if test "$hydro_multiline" = true
+        set --global _hydro_newline "\n"
+    else
+        set --global _hydro_newline ""
+    end
+end && hydro_multiline
+
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
+set --query hydro_multiline || set --global hydro_multiline false
