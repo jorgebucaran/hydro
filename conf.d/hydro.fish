@@ -47,7 +47,7 @@ end
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
     set --query _hydro_pwd || _hydro_pwd
-    set --global _hydro_prompt "$_hydro_color_prompt$_hydro_newline$hydro_symbol_prompt"
+    set --global _hydro_prompt "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
 
     for code in $last_status
         if test $code -ne 0
