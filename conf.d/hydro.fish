@@ -7,16 +7,25 @@ function $_hydro_git --on-variable $_hydro_git
 end
 
 function _hydro_pwd --on-variable PWD
-    set --local root (command git rev-parse --show-toplevel 2>/dev/null |
-        string replace --all --regex -- "^.*/" "")
-    set --global _hydro_pwd (
-        string replace --ignore-case -- ~ \~ $PWD |
-        string replace -- "/$root/" /:/ |
-        string replace --regex --all -- "(\.?[^/]{1})[^/]*/" \$1/ |
-        string replace -- : "$root" |
-        string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
-        string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
-    )
+    set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
+    if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
+        set --global _hydro_pwd (
+            string replace --ignore-case -- ~ \~ $PWD |
+            string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
+            string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
+        )
+    else
+        set --local root (command git rev-parse --show-toplevel 2>/dev/null |
+            string replace --all --regex -- "^.*/" "")
+        set --global _hydro_pwd (
+            string replace --ignore-case -- ~ \~ $PWD |
+            string replace -- "/$root/" /:/ |
+            string replace --regex --all -- "(\.?[^/]{"$fish_prompt_pwd_dir_length"})[^/]*/" \$1/ |
+            string replace -- : "$root" |
+            string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
+            string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
+        )
+    end
     test "$root" != "$_hydro_git_root" &&
         set --global _hydro_git_root $root && set $_hydro_git
 end
@@ -38,11 +47,11 @@ end
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
     set --query _hydro_pwd || _hydro_pwd
-    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
+    set --global _hydro_prompt "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
 
     for code in $last_status
         if test $code -ne 0
-            set _hydro_prompt "$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            set _hydro_prompt "$_hydro_newline$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
             break
         end
     end
@@ -105,8 +114,17 @@ for color in hydro_color_{pwd,git,error,prompt,duration}
     end && $color
 end
 
+function hydro_multiline --on-variable hydro_multiline
+    if test "$hydro_multiline" = true
+        set --global _hydro_newline "\n"
+    else
+        set --global _hydro_newline ""
+    end
+end && hydro_multiline
+
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
+set --query hydro_multiline || set --global hydro_multiline false
