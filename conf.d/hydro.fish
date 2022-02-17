@@ -8,24 +8,30 @@ end
 
 function _hydro_pwd --on-variable PWD
     set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
+    set --local pwd (
+        string replace --ignore-case -- ~ \~ $PWD | string escape
+    )
     if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
-        set --global _hydro_pwd (
-            string replace --ignore-case -- ~ \~ $PWD |
-            string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
-            string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
-        )
     else
-        set --local root (command git rev-parse --show-toplevel 2>/dev/null |
-            string replace --all --regex -- "^.*/" "")
-        set --global _hydro_pwd (
-            string replace --ignore-case -- ~ \~ $PWD |
-            string replace -- "/$root/" /:/ |
+        set --local toplevel (
+            command git rev-parse --show-toplevel 2>/dev/null |
+            string replace --all --regex -- "^.*/" "" |
+            string escape
+        )
+        set pwd (
+            echo -n $pwd |
+            string replace -- "/$toplevel/" /:/ |
             string replace --regex --all -- "(\.?[^/]{"$fish_prompt_pwd_dir_length"})[^/]*/" \$1/ |
-            string replace -- : "$root" |
+            string replace -- : "$toplevel" |
             string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
             string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
         )
     end
+    set --global _hydro_pwd (
+        echo -n $pwd |
+        string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
+        string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
+    )
     test "$root" != "$_hydro_git_root" &&
         set --global _hydro_git_root $root && set $_hydro_git
 end
