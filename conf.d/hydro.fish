@@ -11,7 +11,7 @@ function _hydro_pwd --on-variable PWD
     set --local pwd (
         string replace --ignore-case -- ~ \~ $PWD | string escape
     )
-    if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
+    if test "$fish_prompt_pwd_dir_length" -gt 0 && test "$hydro_multiline" != true
     else
         set --local toplevel (
             command git rev-parse --show-toplevel 2>/dev/null |
@@ -22,9 +22,7 @@ function _hydro_pwd --on-variable PWD
             echo -n $pwd |
             string replace -- "/$toplevel/" /:/ |
             string replace --regex --all -- "(\.?[^/]{"$fish_prompt_pwd_dir_length"})[^/]*/" \$1/ |
-            string replace -- : "$toplevel" |
-            string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
-            string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
+            string replace -- : "$toplevel" 
         )
     end
     set --global _hydro_pwd (
