@@ -51,7 +51,7 @@ function _hydro_prompt --on-event fish_prompt
 
     for code in $last_status
         if test $code -ne 0
-            set _hydro_prompt "$_hydro_newline$_hydro_color_error"[(string join "\x1b[2mǀ\x1b[22m" $last_status)]
+            set _hydro_prompt "$_hydro_newline$_hydro_color_error"[(echo $last_status)]
             break
         end
     end
