@@ -37,6 +37,7 @@ function _hydro_postexec --on-event fish_postexec
     set --local mins (math --scale=0 $CMD_DURATION/60000 % 60)
     set --local hours (math --scale=0 $CMD_DURATION/3600000)
 
+    set --local out ""
     test $hours -gt 0 && set --local --append out $hours"h"
     test $mins -gt 0 && set --local --append out $mins"m"
     test $secs -gt 0 && set --local --append out $secs"s"
