@@ -69,6 +69,12 @@ Show current bindings mode.
 <i>R</i> <b>~</b> ❱ ⎢
 </pre>
 
+Show the current [Toolbox] name when operating inside of a [toolbox].
+
+<pre>
+<b style="color:#800080">⬢ devel</b> ~/p/<b>hydro</b> ❱ ⎢
+</pre>
+
 We even set the terminal title to `$PWD` and the currently running command for you.
 
 ```
@@ -100,6 +106,7 @@ Modify variables using `set --universal` from the command line or `set --global`
 | `hydro_symbol_git_dirty`  | string | Dirty repository symbol.        | •       |
 | `hydro_symbol_git_ahead`  | string | Ahead of your upstream symbol.  | ↑       |
 | `hydro_symbol_git_behind` | string | Behind of your upstream symbol. | ↓       |
+| `hydro_symbol_toolbox`    | string | Inside of a toolbox.            | ⬢       |
 
 ### Colors
 
@@ -107,6 +114,7 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 | Variable               | Type  | Description                    | Default              |
 | ---------------------- | ----- | ------------------------------ | -------------------- |
+| `hydro_color_toolbox`  | color | Color of the toolbox segment.  | `800080`             |
 | `hydro_color_pwd`      | color | Color of the pwd segment.      | `$fish_color_normal` |
 | `hydro_color_git`      | color | Color of the git segment.      | `$fish_color_normal` |
 | `hydro_color_error`    | color | Color of the error segment.    | `$fish_color_error`  |
@@ -115,10 +123,11 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Flags
 
-| Variable          | Type    | Description                                  | Default |
-| ----------------- | ------- | -------------------------------------------- | ------- |
-| `hydro_fetch`     | boolean | Fetch git remote in the background.          | `false` |
-| `hydro_multiline` | boolean | Display prompt character on a separate line. | `false` |
+| Variable                       | Type    | Description                                  | Default |
+| ------------------------------ | ------- | -------------------------------------------- | ------- |
+| `hydro_fetch`                  | boolean | Fetch git remote in the background.          | `false` |
+| `hydro_multiline`              | boolean | Display prompt character on a separate line. | `false` |
+| `hydro_toolbox_show_anonymous` | boolean | Do not hide the name of anonymous toolboxes  | `false` |
 
 ### Misc
 
@@ -130,3 +139,6 @@ Modify variables using `set --universal` from the command line or `set --global`
 ## License
 
 [MIT](LICENSE.md)
+
+
+[toolbox]: https://docs.fedoraproject.org/en-US/fedora-silverblue/toolbox/

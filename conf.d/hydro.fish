@@ -6,13 +6,40 @@ function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
 end
 
+function _hydro_toolbox_name --on-variable TOOLBOX_PATH
+    if test -e /run/.toolboxenv -a -f /run/.containerenv -a -r /run/.containerenv
+        set --global _hydro_toolbox_name (
+            cat /run/.containerenv |
+            string match --regex --groups-only -- 'name="([^"]+)"'
+        )
+    else
+        set --global _hydro_toolbox_name
+    end
+end
+
+function _hydro_toolbox --on-variable TOOLBOX_PATH --on-variable hydro_toolbox_show_anonymous
+    if set --query TOOLBOX_PATH
+        # if in a toolbox, get the toolbox name
+        set --query _hydro_toolbox_name || _hydro_toolbox_name
+        if string match -q --entire 'fedora-toolbox-' $_hydro_toolbox_name && test "$hydro_toolbox_show_anonymous" != true
+            # if the toolbox name begins with fedora-toolbox-, do not print it (it's an anonymous toolbox)
+            set --global _hydro_toolbox "\x1b[1m$hydro_symbol_toolbox\x1b[22m "
+        else
+            # otherwise, print it (it's a named toolbox)
+            set --global _hydro_toolbox "\x1b[1m$hydro_symbol_toolbox $_hydro_toolbox_name\x1b[22m "
+        end
+    else
+        # if not in a toolbox, do nothing at all
+        set --global _hydro_toolbox
+    end
+end
+
 function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths
     if set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null) && ! contains -- $git_root $hydro_ignored_git_paths
         set --erase _hydro_skip_git_prompt
     else
         set --global _hydro_skip_git_prompt
     end
-
     set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
 
     if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
@@ -53,6 +80,7 @@ end
 
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
+    set --query _hydro_toolbox || _hydro_toolbox
     set --query _hydro_pwd || _hydro_pwd
     set --global _hydro_prompt "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
 
@@ -117,7 +145,7 @@ end
 
 set --global hydro_color_normal (set_color normal)
 
-for color in hydro_color_{pwd,git,error,prompt,duration}
+for color in hydro_color_{toolbox,pwd,git,error,prompt,duration}
     function $color --on-variable $color --inherit-variable color
         set --query $color && set --global _$color (set_color $$color)
     end && $color
@@ -132,8 +160,11 @@ function hydro_multiline --on-variable hydro_multiline
 end && hydro_multiline
 
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+set --query hydro_color_toolbox || set --global hydro_color_toolbox 800080 # same color as used in bash
+set --query hydro_symbol_toolbox || set --global hydro_symbol_toolbox ⬢
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
+set --query hydro_toolbox_show_anonymous || set --global hydro_toolbox_show_anonymous false
