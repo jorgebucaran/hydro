@@ -15,7 +15,12 @@ function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths
 
     set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
 
-    if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
+    if test "$hydro_pwd_currentdir_only" = true
+        test "$PWD" = '/' && set --global _hydro_pwd "\x1b[1m/\x1b[22m" || \
+        set --global _hydro_pwd (
+            string replace --regex -- '^(?:/(?:[^/]+/)*)([^/]+)$' "\x1b[1m\$1\x1b[22m" $PWD
+        )
+    else if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
         set --global _hydro_pwd (
             string replace --ignore-case -- ~ \~ $PWD |
             string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
@@ -137,3 +142,4 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
+set --query hydro_pwd_currentdir_only || set --global hydro_pwd_currentdir_only false
