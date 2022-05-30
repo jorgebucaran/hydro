@@ -58,6 +58,10 @@ function _hydro_prompt --on-event fish_prompt
 
     command kill $_hydro_last_pid 2>/dev/null
 
+    set --local git_root (command git rev-parse --show-toplevel 2>/dev/null)
+    if contains $git_root $hydro_ignored_git_paths
+        return
+    end
     fish --private --command "
         ! command git --no-optional-locks rev-parse 2>/dev/null && set $_hydro_git && exit
 
