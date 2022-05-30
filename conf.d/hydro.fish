@@ -6,8 +6,15 @@ function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
 end
 
-function _hydro_pwd --on-variable PWD
+function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths
+    if set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null) && ! contains -- $git_root $hydro_ignored_git_paths
+        set --erase _hydro_skip_git_prompt
+    else
+        set --global _hydro_skip_git_prompt
+    end
+
     set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
+
     if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
         set --global _hydro_pwd (
             string replace --ignore-case -- ~ \~ $PWD |
@@ -26,8 +33,6 @@ function _hydro_pwd --on-variable PWD
             string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
         )
     end
-    test "$root" != "$_hydro_git_root" &&
-        set --global _hydro_git_root $root && set $_hydro_git
 end
 
 function _hydro_postexec --on-event fish_postexec
@@ -58,13 +63,9 @@ function _hydro_prompt --on-event fish_prompt
 
     command kill $_hydro_last_pid 2>/dev/null
 
-    set --local git_root (command git rev-parse --show-toplevel 2>/dev/null)
-    if contains $git_root $hydro_ignored_git_paths
-        return
-    end
-    fish --private --command "
-        ! command git --no-optional-locks rev-parse 2>/dev/null && set $_hydro_git && exit
+    set --query _hydro_skip_git_prompt && set $_hydro_git && return
 
+    fish --private --command "
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
