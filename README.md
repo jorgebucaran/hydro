@@ -115,10 +115,11 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Flags
 
-| Variable          | Type    | Description                                  | Default |
-| ----------------- | ------- | -------------------------------------------- | ------- |
-| `hydro_fetch`     | boolean | Fetch git remote in the background.          | `false` |
-| `hydro_multiline` | boolean | Display prompt character on a separate line. | `false` |
+| Variable                    | Type    | Description                                  | Default |
+| --------------------------- | ------- | -------------------------------------------- | ------- |
+| `hydro_fetch`               | boolean | Fetch git remote in the background.          | `false` |
+| `hydro_multiline`           | boolean | Display prompt character on a separate line. | `false` |
+| `hydro_pwd_currentdir_only` | boolean | Display only the top-level directory.        | `false` |
 
 ### Misc
 
