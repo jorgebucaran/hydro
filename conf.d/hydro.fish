@@ -6,7 +6,7 @@ function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
 end
 
-function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths
+function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on-variable fish_prompt_pwd_dir_length
     set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
     set --local git_base (string replace --all --regex -- "^.*/" "" "$git_root")
 
