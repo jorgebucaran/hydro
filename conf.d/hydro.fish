@@ -7,32 +7,25 @@ function $_hydro_git --on-variable $_hydro_git
 end
 
 function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths
-    if set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null) && ! contains -- $git_root $hydro_ignored_git_paths
+    set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
+    set --local git_base (string replace --all --regex -- "^.*/" "" "$git_root")
+
+    if set --query git_root[1] && ! contains -- $git_root $hydro_ignored_git_paths
         set --erase _hydro_skip_git_prompt
     else
         set --global _hydro_skip_git_prompt
     end
 
-    set --query fish_prompt_pwd_dir_length || set --local fish_prompt_pwd_dir_length 1
-
-    if test "$fish_prompt_pwd_dir_length" -le 0 || test "$hydro_multiline" = true
-        set --global _hydro_pwd (
-            string replace --ignore-case -- ~ \~ $PWD |
-            string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
-            string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
-        )
-    else
-        set --local root (command git rev-parse --show-toplevel 2>/dev/null |
-            string replace --all --regex -- "^.*/" "")
-        set --global _hydro_pwd (
-            string replace --ignore-case -- ~ \~ $PWD |
-            string replace -- "/$root/" /:/ |
-            string replace --regex --all -- "(\.?[^/]{"$fish_prompt_pwd_dir_length"})[^/]*/" \$1/ |
-            string replace -- : "$root" |
-            string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
-            string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
-        )
-    end
+    set --global _hydro_pwd (
+        string replace --ignore-case -- ~ \~ $PWD |
+        string replace -- "/$git_base/" /:/ |
+        string replace --regex --all -- "(\.?[^/]{"(
+            string replace --regex --all -- '^$' 1 "$fish_prompt_pwd_dir_length"
+        )"})[^/]*/" \$1/ |
+        string replace -- : "$git_base" |
+        string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
+        string replace --regex --all -- '(?!^/$)/' "\x1b[2m/\x1b[22m"
+    )
 end
 
 function _hydro_postexec --on-event fish_postexec
