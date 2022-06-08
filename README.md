@@ -122,10 +122,10 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Misc
 
-| Variable                     | Type    | Description                                                         | Default |
-| ---------------------------- | ------- | ------------------------------------------------------------------- | ------- |
-| `fish_prompt_pwd_dir_length` | numeric | The number of characters to display when path shortening            | 1       |
-| `hydro_ignored_git_paths`    | strings | Space separated list of paths where no git info should be displayed | `""`    |
+| Variable                     | Type    | Description                                                                                                              | Default |
+| ---------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------ | ------- |
+| `fish_prompt_pwd_dir_length` | numeric | The number of characters to display when path shortening. Set it to `0` to display only the topmost (current) directory. | `1`     |
+| `hydro_ignored_git_paths`    | strings | Space separated list of paths where no git info should be displayed                                                      | `""`    |
 
 ## License
 
