@@ -133,5 +133,5 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
-set --query hydro_pre_prompt || set --global hydro_pre_prompt "\n"
+set --query hydro_pre_prompt || set --global hydro_pre_prompt ""
 set --query hydro_post_prompt || set --global hydro_post_prompt " "
