@@ -50,11 +50,11 @@ end
 function _hydro_prompt --on-event fish_prompt
     set --local last_status $pipestatus
     set --query _hydro_pwd || _hydro_pwd
-    set --global _hydro_prompt "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
+    set --global _hydro_prompt "$_hydro_color_prompt$hydro_symbol_prompt"
 
     for code in $last_status
         if test $code -ne 0
-            set _hydro_prompt "$_hydro_newline$_hydro_color_error"[(echo $last_status)]
+            set _hydro_prompt "$_hydro_color_error"[(echo $last_status)]
             break
         end
     end
@@ -121,9 +121,9 @@ end
 
 function hydro_multiline --on-variable hydro_multiline
     if test "$hydro_multiline" = true
-        set --global _hydro_newline "\n"
+        set --global hydro_pre_prompt "\n$hydro_pre_prompt"
     else
-        set --global _hydro_newline ""
+        set --global hydro_pre_prompt (string replace --all '\n' '' $hydro_pre_prompt)
     end
 end && hydro_multiline
 
@@ -133,3 +133,5 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
+set --query hydro_pre_prompt || set --global hydro_pre_prompt ""
+set --query hydro_post_prompt || set --global hydro_post_prompt " "
