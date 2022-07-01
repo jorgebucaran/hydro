@@ -69,12 +69,6 @@ Show current bindings mode.
 <i>R</i> <b>~</b> ❱ ⎢
 </pre>
 
-We even set the terminal title to `$PWD` and the currently running command for you.
-
-```
-fish ~/projects/hydro
-```
-
 ## Performance
 
 Blazing fast would be an understatement considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
