@@ -1,8 +1,9 @@
 status is-interactive || exit
 
 set --global _hydro_git _hydro_git_$fish_pid
+set --global _hydro_addons _hydro_items_$fish_pid
 
-function $_hydro_git --on-variable $_hydro_git
+function $_hydro_git --on-variable $_hydro_git --on-variable $_hydro_addons
     commandline --function repaint
 end
 
@@ -65,7 +66,11 @@ function _hydro_prompt --on-event fish_prompt
 
     set --query _hydro_skip_git_prompt && set $_hydro_git && return
 
+    set --local addons _hydro_addon_{$hydro_prompt_addons}\;
+
     fish --private --command "
+        set --universal $_hydro_addons ($addons) \"\"
+
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
@@ -102,7 +107,7 @@ function _hydro_prompt --on-event fish_prompt
 end
 
 function _hydro_fish_exit --on-event fish_exit
-    set --erase $_hydro_git
+    set --erase $_hydro_git $_hydro_addons
 end
 
 function _hydro_uninstall --on-event hydro_uninstall
