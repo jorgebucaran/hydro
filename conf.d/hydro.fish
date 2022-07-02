@@ -32,6 +32,16 @@ function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on
 end
 
 function _hydro_postexec --on-event fish_postexec
+    set --local last_status $pipestatus
+    set --global _hydro_status "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
+
+    for code in $last_status
+        if test $code -ne 0
+            set --global _hydro_status "$_hydro_newline$_hydro_color_error"[(echo $last_status)]
+            break
+        end
+    end
+
     test "$CMD_DURATION" -lt 1000 && set _hydro_cmd_duration && return
 
     set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
@@ -48,16 +58,8 @@ function _hydro_postexec --on-event fish_postexec
 end
 
 function _hydro_prompt --on-event fish_prompt
-    set --local last_status $pipestatus
+    set --query _hydro_status || set --global _hydro_status "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
     set --query _hydro_pwd || _hydro_pwd
-    set --global _hydro_status "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
-
-    for code in $last_status
-        if test $code -ne 0
-            set _hydro_status "$_hydro_newline$_hydro_color_error"[(echo $last_status)]
-            break
-        end
-    end
 
     command kill $_hydro_last_pid 2>/dev/null
 
