@@ -37,7 +37,7 @@ function _hydro_postexec --on-event fish_postexec
 
     for code in $last_status
         if test $code -ne 0
-            set --global _hydro_status "$_hydro_newline$_hydro_color_error"[(echo $last_status)]
+            set --global _hydro_status "$_hydro_newline$_hydro_color_error| "(echo $last_status)" $_hydro_color_prompt$_hydro_color_error$hydro_symbol_prompt"
             break
         end
     end

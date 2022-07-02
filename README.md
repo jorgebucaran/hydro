@@ -50,7 +50,7 @@ Show the last `$pipestatus`.
 ~/p/<b>hydro</b> main ❱ false
 ~/p/<b>hydro</b> main ❱ [<b>1</b>]
 ~/p/<b>hydro</b> main ❱ true | false | false
-~/p/<b>hydro</b> main [<b>0</b>ǀ<b>1</b>ǀ<b>1</b>] ⎢
+~/p/<b>hydro</b> main | <b>0</b> <b>1</b> <b>1</b> ❱ ⎢
 </pre>
 
 Truncate `$PWD` segments except for the basename and root of Git repos.
