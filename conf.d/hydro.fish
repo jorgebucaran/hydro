@@ -42,7 +42,7 @@ function _hydro_postexec --on-event fish_postexec
         end
     end
 
-    test "$CMD_DURATION" -lt 1000 && set _hydro_cmd_duration && return
+    test "$CMD_DURATION" -lt $hydro_cmd_duration_threshold && set _hydro_cmd_duration && return
 
     set --local secs (math --scale=1 $CMD_DURATION/1000 % 60)
     set --local mins (math --scale=0 $CMD_DURATION/60000 % 60)
@@ -134,3 +134,4 @@ set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
+set --query hydro_cmd_duration_threshold || set --global hydro_cmd_duration_threshold 1000
