@@ -78,7 +78,7 @@ function _hydro_prompt --on-event fish_prompt
         command git status --porcelain | count | read dirty_count
         if test -n \"\$dirty_count\"
             test \"\$dirty_count\" -gt 0 && set dirty \"$hydro_symbol_git_dirty\"
-            test \"\$dirty_count\" -gt 1 && set dirty \"$hydro_symbol_git_dirty\$dirty_count\"
+            test \"$hydro_dirty_count\" = true && test \"\$dirty_count\" -gt 1 && set dirty \"$hydro_symbol_git_dirty\$dirty_count\"
         end
 
         for fetch in $hydro_fetch false
@@ -136,5 +136,6 @@ set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
+set --query hydro_dirty_count || set --global hydro_dirty_count false
 set --query hydro_multiline || set --global hydro_multiline false
 set --query hydro_cmd_duration_threshold || set --global hydro_cmd_duration_threshold 1000
