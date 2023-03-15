@@ -76,7 +76,10 @@ function _hydro_prompt --on-event fish_prompt
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
         command git status --porcelain | count | read dirty_count
-        test \"\$dirty_count\" -gt 0 && set info \"$hydro_symbol_git_dirty\$dirty_count\"
+        if test -n \"\$dirty_count\"
+            test \"\$dirty_count\" -gt 0 && set dirty \"$hydro_symbol_git_dirty\"
+            test \"\$dirty_count\" -gt 1 && set dirty \"$hydro_symbol_git_dirty\$dirty_count\"
+        end
 
         for fetch in $hydro_fetch false
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null |
@@ -92,7 +95,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git \"\$branch\$info\$upstream \"
+            set --universal $_hydro_git \"\$branch\$dirty\$upstream \"
 
             test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
