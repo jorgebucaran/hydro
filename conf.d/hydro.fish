@@ -80,7 +80,7 @@ function _hydro_prompt --on-event fish_prompt
                 count (command git ls-files --others --exclude-standard) >/dev/null && set dirty \"$hydro_symbol_git_dirty\"
         else
             command git status --porcelain | count | read dirty_count
-            if test \"\$dirty_count\" -gt 0
+            if test -n \"\$dirty_count\" && test \"\$dirty_count\" -gt 0
                 set dirty \"$hydro_symbol_git_dirty\"
                 test \"$hydro_dirty_count\" = true && test \"\$dirty_count\" -gt 1 && set dirty \"\$dirty\$dirty_count\"
             end
