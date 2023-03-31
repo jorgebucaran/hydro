@@ -109,10 +109,11 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Flags
 
-| Variable          | Type    | Description                                  | Default |
-| ----------------- | ------- | -------------------------------------------- | ------- |
-| `hydro_fetch`     | boolean | Fetch git remote in the background.          | `false` |
-| `hydro_multiline` | boolean | Display prompt character on a separate line. | `false` |
+| Variable            | Type    | Description                                  | Default |
+| ------------------- | ------- | -------------------------------------------- | ------- |
+| `hydro_dirty_count` | boolean | Display git dirty count.                     | `false` |
+| `hydro_fetch`       | boolean | Fetch git remote in the background.          | `false` |
+| `hydro_multiline`   | boolean | Display prompt character on a separate line. | `false` |
 
 ### Misc
 
