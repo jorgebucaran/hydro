@@ -75,15 +75,15 @@ function _hydro_prompt --on-event fish_prompt
 
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
-        if test \"$hydro_dirty_count\" = true
-            command git status --porcelain | count | read dirty_count
-            if test -n \"\$dirty_count\"
-                test \"\$dirty_count\" -gt 0 && set dirty \"$hydro_symbol_git_dirty\"
-                test \"$hydro_dirty_count\" = true && test \"\$dirty_count\" -gt 1 && set dirty \"$hydro_symbol_git_dirty\$dirty_count\"
-            end
-        else
+        if test \"$hydro_dirty_count\" = false
             ! command git diff-index --quiet HEAD 2>/dev/null ||
                 count (command git ls-files --others --exclude-standard) >/dev/null && set dirty \"$hydro_symbol_git_dirty\"
+        else
+            command git status --porcelain | count | read dirty_count
+            if test \"\$dirty_count\" -gt 0
+                set dirty \"$hydro_symbol_git_dirty\"
+                test \"$hydro_dirty_count\" = true && test \"\$dirty_count\" -gt 1 && set dirty \"\$dirty\$dirty_count\"
+            end
         end
 
         for fetch in $hydro_fetch false
