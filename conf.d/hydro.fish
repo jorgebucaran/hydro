@@ -79,7 +79,7 @@ function _hydro_prompt --on-event fish_prompt
             count (command git ls-files --others --exclude-standard) >/dev/null && set info \"$hydro_symbol_git_dirty\"
 
         command git rev-list --walk-reflogs --count refs/stash 2>/dev/null | read stash_count 
-        if test \"\$stash_count\" -gt 0
+        if test -n \"\$stash_count\" && test \"\$stash_count\" -gt 0
             set stash \" $hydro_symbol_git_stash\"
             test \"$hydro_stash_count\" = true && test \"\$stash_count\" -gt 1 && set stash \"\$stash\$stash_count\"
         end
