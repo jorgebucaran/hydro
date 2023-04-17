@@ -6,29 +6,43 @@ function $_hydro_git --on-variable $_hydro_git
     commandline --function repaint
 end
 
+function _hydro_pretty_path
+    set --local dir_len "$fish_prompt_pwd_dir_length"
+    test -z $dir_len && set dir_len 1
+
+    string replace --regex --all -- "(\.?[^/]{$dir_len})[^/]*/" '$1/' $argv[1] |
+        string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
+        string replace --regex --all -- '(?!^/$)/|^$' "\x1b[2m/\x1b[22m"
+end
+
 function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on-variable fish_prompt_pwd_dir_length
+    if test "$fish_prompt_pwd_dir_length" = 0
+        set --global _hydro_pwd (path basename $PWD)
+        return
+    end
+
     set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
-    set --local git_base (string replace --all --regex -- "^.*/" "" "$git_root")
-    set --local path_sep /
 
-    test "$fish_prompt_pwd_dir_length" = 0 && set path_sep
-
-    if set --query git_root[1] && ! contains -- $git_root $hydro_ignored_git_paths
+    if set --query git_root[1] && ! contains -- "$git_root" $hydro_ignored_git_paths
         set --erase _hydro_skip_git_prompt
     else
         set --global _hydro_skip_git_prompt
     end
 
-    set --global _hydro_pwd (
-        string replace --ignore-case -- ~ \~ $PWD |
-        string replace -- "/$git_base/" /:/ |
-        string replace --regex --all -- "(\.?[^/]{"(
-            string replace --regex --all -- '^$' 1 "$fish_prompt_pwd_dir_length"
-        )"})[^/]*/" "\$1$path_sep" |
-        string replace -- : "$git_base" |
-        string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
-        string replace --regex --all -- '(?!^/$)/|^$' "\x1b[2m/\x1b[22m"
-    )
+    set --local dir (string replace --regex -- "^$(string escape --style=regex -- ~)" '~' $PWD)
+
+    if test -z $git_root
+        set --global _hydro_pwd (_hydro_pretty_path $dir)
+    else
+        set --local git_dir (string replace --regex -- "^$(string escape --style=regex -- ~)" '~' $git_root)
+        set --local after_git (string replace -- "$git_dir" "" "$dir")
+
+        if test -z $after_git
+            set --global _hydro_pwd (_hydro_pretty_path $dir)
+        else
+            set --global _hydro_pwd "$(_hydro_pretty_path $git_dir)$(_hydro_pretty_path $after_git)"
+        end
+    end
 end
 
 function _hydro_postexec --on-event fish_postexec
