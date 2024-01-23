@@ -54,7 +54,7 @@ function _hydro_postexec --on-event fish_postexec
     test $mins -gt 0 && set --local --append out $mins"m"
     test $secs -gt 0 && set --local --append out $secs"s"
 
-    set --global _hydro_cmd_duration "$out "
+    set --global _hydro_cmd_duration "$hydro_duration_prefix$out "
 end
 
 function _hydro_prompt --on-event fish_prompt
@@ -92,7 +92,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git \"\$branch\$info\$upstream \"
+            set --universal $_hydro_git \"\$hydro_git_prefix\$branch\$info\$upstream \"
 
             test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
