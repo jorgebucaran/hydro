@@ -92,7 +92,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git \"\$hydro_prefix_git\$branch\$info\$upstream \"
+            set --universal $_hydro_git \"$hydro_prefix_git\$branch\$info\$upstream \"
 
             test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
