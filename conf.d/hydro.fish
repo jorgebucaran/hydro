@@ -98,7 +98,7 @@ function _hydro_prompt --on-event fish_prompt
         end
     " &
 
-    set --global _hydro_last_pid (jobs --last --pid)
+    set --global _hydro_last_pid $last_pid
 end
 
 function _hydro_fish_exit --on-event fish_exit
