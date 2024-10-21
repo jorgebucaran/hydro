@@ -1,23 +1,21 @@
 status is-interactive || exit
 
 set --global _hydro_git _hydro_git_$fish_pid
+set --global _hydro_addons _hydro_items_$fish_pid
 
-function $_hydro_git --on-variable $_hydro_git
+function $_hydro_git --on-variable $_hydro_git --on-variable $_hydro_addons
     commandline --function repaint
 end
 
 function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on-variable fish_prompt_pwd_dir_length
-    set --local git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
-    set --local git_base (string replace --all --regex -- "^.*/" "" "$git_root")
+    set --global _hydro_git_root (command git --no-optional-locks rev-parse --show-toplevel 2>/dev/null)
+    set --local git_base (string replace --all --regex -- "^.*/" "" "$_hydro_git_root")
     set --local path_sep /
+    
+    set --query _hydro_git_root[1] &&
+        contains -- $_hydro_git_root $hydro_ignored_git_paths && set _hydro_git_root
 
     test "$fish_prompt_pwd_dir_length" = 0 && set path_sep
-
-    if set --query git_root[1] && ! contains -- $git_root $hydro_ignored_git_paths
-        set --erase _hydro_skip_git_prompt
-    else
-        set --global _hydro_skip_git_prompt
-    end
 
     set --global _hydro_pwd (
         string replace --ignore-case -- ~ \~ $PWD |
@@ -61,11 +59,15 @@ function _hydro_prompt --on-event fish_prompt
     set --query _hydro_status || set --global _hydro_status "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
     set --query _hydro_pwd || _hydro_pwd
 
+    set --local addons _hydro_addon_{$hydro_prompt_addons}\;
+
     command kill $_hydro_last_pid 2>/dev/null
 
-    set --query _hydro_skip_git_prompt && set $_hydro_git && return
-
     fish --private --command "
+        set --universal $_hydro_addons ($addons) \"\"
+
+        test -z \"$_hydro_git_root\" && set $_hydro_git && exit
+
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
@@ -102,7 +104,7 @@ function _hydro_prompt --on-event fish_prompt
 end
 
 function _hydro_fish_exit --on-event fish_exit
-    set --erase $_hydro_git
+    set --erase $_hydro_git $_hydro_addons
 end
 
 function _hydro_uninstall --on-event hydro_uninstall
@@ -111,8 +113,6 @@ function _hydro_uninstall --on-event hydro_uninstall
         source
     functions --erase (functions --all | string match --entire --regex "^_?hydro_")
 end
-
-set --global hydro_color_normal (set_color normal)
 
 for color in hydro_color_{pwd,git,error,prompt,duration}
     function $color --on-variable $color --inherit-variable color
