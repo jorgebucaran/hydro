@@ -114,7 +114,7 @@ end
 
 set --global hydro_color_normal (set_color normal)
 
-for color in hydro_color_{pwd,git,error,prompt,duration}
+for color in hydro_color_{pwd,git,error,prompt,duration,start}
     function $color --on-variable $color --inherit-variable color
         set --query $color && set --global _$color (set_color $$color)
     end && $color
