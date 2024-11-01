@@ -75,7 +75,8 @@ function _hydro_prompt --on-event fish_prompt
 
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
-        ! command git diff-index --quiet HEAD 2>/dev/null ||
+        command git diff-index --quiet HEAD 2>/dev/null
+        test \$status -eq 1 ||
             count (command git ls-files --others --exclude-standard (command git rev-parse --show-toplevel)) >/dev/null && set info \"$hydro_symbol_git_dirty\"
 
         for fetch in $hydro_fetch false
