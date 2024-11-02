@@ -79,6 +79,12 @@ function _hydro_prompt --on-event fish_prompt
         test \$status -eq 1 ||
             count (command git ls-files --others --exclude-standard (command git rev-parse --show-toplevel)) >/dev/null && set info \"$hydro_symbol_git_dirty\"
 
+        command git rev-list --walk-reflogs --count refs/stash 2>/dev/null | read stash_count 
+        if test -n \"\$stash_count\" && test \"\$stash_count\" -gt 0
+            set stash \" $hydro_symbol_git_stash\"
+            test \"$hydro_stash_count\" = true && test \"\$stash_count\" -gt 1 && set stash \"\$stash\$stash_count\"
+        end
+
         for fetch in $hydro_fetch false
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null |
                 read behind ahead
@@ -93,7 +99,7 @@ function _hydro_prompt --on-event fish_prompt
                     set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
             end
 
-            set --universal $_hydro_git \"\$branch\$info\$upstream \"
+            set --universal $_hydro_git \"\$branch\$info\$upstream\$stash \"
 
             test \$fetch = true && command git fetch --no-tags 2>/dev/null
         end
@@ -134,5 +140,7 @@ set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
+set --query hydro_symbol_git_stash || set --global hydro_symbol_git_stash ≡
 set --query hydro_multiline || set --global hydro_multiline false
+set --query hydro_stash_count || set --global hydro_stash_count false
 set --query hydro_cmd_duration_threshold || set --global hydro_cmd_duration_threshold 1000
