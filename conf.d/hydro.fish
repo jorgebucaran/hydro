@@ -65,7 +65,7 @@ function _hydro_prompt --on-event fish_prompt
 
     set --query _hydro_skip_git_prompt && set $_hydro_git && return
 
-    fish --no-config --private --command "
+    fish --private --command "
         set branch (
             command git symbolic-ref --short HEAD 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
