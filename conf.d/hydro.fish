@@ -34,20 +34,20 @@ end
 function _hydro_who
     set --local show_hostname false
     if set --query SSH_CONNECTION
-        set --local show_hostname true
+        set show_hostname true
     else
         switch (uname)
         case Linux
             if test -f /proc/1/environ && grep -qa container=lxc /proc/1/environ
-                set --local show_hostname true
+                set show_hostname true
             end
         case FreeBSD
             if test "$(sysctl -n security.jail.jailed)" = "1"
-                set --local show_hostname true
+                set show_hostname true
             end
         case SunOS
             if test "$(zonename)" != "global"
-                set --local show_hostname true
+                set show_hostname true
             end
         end
     end
