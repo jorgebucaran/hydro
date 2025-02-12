@@ -59,6 +59,8 @@ function _hydro_who
         set --global _hydro_who "$USER$host "
     else if test "$hydro_always_show_user" = true
         set --global _hydro_who "$USER "
+    else
+        set --global _hydro_who ""
     end
 end
 
