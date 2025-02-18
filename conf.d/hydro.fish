@@ -38,7 +38,7 @@ function _hydro_who
     else
         switch (uname)
         case Linux
-            if test -f /proc/1/environ && grep -qa container=lxc /proc/1/environ
+            if test -r /proc/1/environ && grep -qa container=lxc /proc/1/environ
                 set show_hostname true
             end
         case FreeBSD
