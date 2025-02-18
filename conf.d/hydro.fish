@@ -31,6 +31,39 @@ function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on
     )
 end
 
+function _hydro_who
+    set --local show_hostname false
+    if set --query SSH_CONNECTION
+        set show_hostname true
+    else
+        switch (uname)
+        case Linux
+            if test -r /proc/1/environ && grep -qa container=lxc /proc/1/environ
+                set show_hostname true
+            end
+        case FreeBSD
+            if test "$(sysctl -n security.jail.jailed)" = "1"
+                set show_hostname true
+            end
+        case SunOS
+            if test "$(zonename)" != "global"
+                set show_hostname true
+            end
+        end
+    end
+
+    if test "$show_hostname" = true
+        set --local short_host (
+            string split --fields 1 . $hostname
+        )
+        set --global _hydro_who "$USER@$short_host "
+    else if test "$hydro_always_show_user" = true
+        set --global _hydro_who "$USER "
+    else
+        set --global _hydro_who ""
+    end
+end
+
 function _hydro_postexec --on-event fish_postexec
     set --local last_status $pipestatus
     set --global _hydro_status "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
@@ -60,6 +93,7 @@ end
 function _hydro_prompt --on-event fish_prompt
     set --query _hydro_status || set --global _hydro_status "$_hydro_newline$_hydro_color_prompt$hydro_symbol_prompt"
     set --query _hydro_pwd || _hydro_pwd
+    set --query _hydro_who || _hydro_who
 
     command kill $_hydro_last_pid 2>/dev/null
 
@@ -115,7 +149,7 @@ end
 
 set --global hydro_color_normal (set_color normal)
 
-for color in hydro_color_{pwd,git,error,prompt,duration,start}
+for color in hydro_color_{pwd,git,error,prompt,duration,start,who}
     function $color --on-variable $color --inherit-variable color
         set --query $color && set --global _$color (set_color $$color)
     end && $color
