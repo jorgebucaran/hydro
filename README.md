@@ -100,14 +100,18 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 > Any argument accepted by [`set_color`](https://fishshell.com/docs/current/cmds/set_color.html).
 
-| Variable               | Type  | Description                    | Default              |
-| ---------------------- | ----- | ------------------------------ | -------------------- |
-| `hydro_color_pwd`      | color | Color of the pwd segment.      | `$fish_color_normal` |
-| `hydro_color_git`      | color | Color of the git segment.      | `$fish_color_normal` |
-| `hydro_color_start`    | color | Color of the start symbol.     | `$fish_color_normal` |
-| `hydro_color_error`    | color | Color of the error segment.    | `$fish_color_error`  |
-| `hydro_color_prompt`   | color | Color of the prompt symbol.    | `$fish_color_normal` |
-| `hydro_color_duration` | color | Color of the duration section. | `$fish_color_normal` |
+| Variable                      | Type  | Description                             | Default              |
+| ----------------------------- | ----- | --------------------------------------- | -------------------- |
+| `hydro_color_pwd`             | color | Color of the pwd segment.               | `$fish_color_normal` |
+| `hydro_color_git`             | color | Color of the git segment.               | `$fish_color_normal` |
+| `hydro_color_start`           | color | Color of the start symbol.              | `$fish_color_normal` |
+| `hydro_color_error`           | color | Color of the error segment.             | `$fish_color_error`  |
+| `hydro_color_prompt`          | color | Color of the prompt symbol.             | `$fish_color_normal` |
+| `hydro_color_duration`        | color | Color of the duration section.          | `$fish_color_normal` |
+| `hydro_color_vi_mode_default` | color | Color of the VI default mode indicator. | `$fish_color_normal` |
+| `hydro_color_vi_mode_insert`  | color | Color of the VI insert mode indicator.  | `$fish_color_normal` |
+| `hydro_color_vi_mode_replace` | color | Color of the VI replace mode indicator. | `$fish_color_normal` |
+| `hydro_color_vi_mode_visual`  | color | Color of the VI visual mode indicator.  | `$fish_color_normal` |
 
 ### Flags
 
