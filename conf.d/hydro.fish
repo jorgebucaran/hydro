@@ -136,3 +136,7 @@ set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
 set --query hydro_cmd_duration_threshold || set --global hydro_cmd_duration_threshold 1000
+set --query hydro_symbol_vi_mode_default || set --global hydro_symbol_vi_mode_default N
+set --query hydro_symbol_vi_mode_insert || set --global hydro_symbol_vi_mode_insert I
+set --query hydro_symbol_vi_mode_replace || set --global hydro_symbol_vi_mode_replace R
+set --query hydro_symbol_vi_mode_visual || set --global hydro_symbol_vi_mode_visual V

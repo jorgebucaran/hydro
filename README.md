@@ -88,26 +88,34 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Symbols
 
-| Variable                  | Type   | Description                     | Default |
-| ------------------------- | ------ | ------------------------------- | ------- |
-| `hydro_symbol_start`      | string | Prompt start symbol.            |         |
-| `hydro_symbol_prompt`     | string | Prompt symbol.                  | `❱`     |
-| `hydro_symbol_git_dirty`  | string | Dirty repository symbol.        | `•`     |
-| `hydro_symbol_git_ahead`  | string | Ahead of your upstream symbol.  | `↑`     |
-| `hydro_symbol_git_behind` | string | Behind of your upstream symbol. | `↓`     |
+| Variable                       | Type   | Description                              | Default |
+| ------------------------------ | ------ | ---------------------------------------- | ------- |
+| `hydro_symbol_start`           | string | Prompt start symbol.                     |         |
+| `hydro_symbol_prompt`          | string | Prompt symbol.                           | `❱`     |
+| `hydro_symbol_git_dirty`       | string | Dirty repository symbol.                 | `•`     |
+| `hydro_symbol_git_ahead`       | string | Ahead of your upstream symbol.           | `↑`     |
+| `hydro_symbol_git_behind`      | string | Behind of your upstream symbol.          | `↓`     |
+| `hydro_symbol_vi_mode_default` | string | Symbol of the vi default mode indicator. | `N`     |
+| `hydro_symbol_vi_mode_insert`  | string | Symbol of the vi insert mode indicator.  | `I`     |
+| `hydro_symbol_vi_mode_replace` | string | Symbol of the vi replace mode indicator. | `R`     |
+| `hydro_symbol_vi_mode_visual`  | string | Symbol of the vi visual mode indicator.  | `V`     |
 
 ### Colors
 
 > Any argument accepted by [`set_color`](https://fishshell.com/docs/current/cmds/set_color.html).
 
-| Variable               | Type  | Description                    | Default              |
-| ---------------------- | ----- | ------------------------------ | -------------------- |
-| `hydro_color_pwd`      | color | Color of the pwd segment.      | `$fish_color_normal` |
-| `hydro_color_git`      | color | Color of the git segment.      | `$fish_color_normal` |
-| `hydro_color_start`    | color | Color of the start symbol.     | `$fish_color_normal` |
-| `hydro_color_error`    | color | Color of the error segment.    | `$fish_color_error`  |
-| `hydro_color_prompt`   | color | Color of the prompt symbol.    | `$fish_color_normal` |
-| `hydro_color_duration` | color | Color of the duration section. | `$fish_color_normal` |
+| Variable                      | Type  | Description                             | Default              |
+| ----------------------------- | ----- | --------------------------------------- | -------------------- |
+| `hydro_color_pwd`             | color | Color of the pwd segment.               | `$fish_color_normal` |
+| `hydro_color_git`             | color | Color of the git segment.               | `$fish_color_normal` |
+| `hydro_color_start`           | color | Color of the start symbol.              | `$fish_color_normal` |
+| `hydro_color_error`           | color | Color of the error segment.             | `$fish_color_error`  |
+| `hydro_color_prompt`          | color | Color of the prompt symbol.             | `$fish_color_normal` |
+| `hydro_color_duration`        | color | Color of the duration section.          | `$fish_color_normal` |
+| `hydro_color_vi_mode_default` | color | Color of the vi default mode indicator. | `$fish_color_normal` |
+| `hydro_color_vi_mode_insert`  | color | Color of the vi insert mode indicator.  | `$fish_color_normal` |
+| `hydro_color_vi_mode_replace` | color | Color of the vi replace mode indicator. | `$fish_color_normal` |
+| `hydro_color_vi_mode_visual`  | color | Color of the vi visual mode indicator.  | `$fish_color_normal` |
 
 ### Flags
 
