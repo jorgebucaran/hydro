@@ -88,13 +88,17 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Symbols
 
-| Variable                  | Type   | Description                     | Default |
-| ------------------------- | ------ | ------------------------------- | ------- |
-| `hydro_symbol_start`      | string | Prompt start symbol.            |         |
-| `hydro_symbol_prompt`     | string | Prompt symbol.                  | `❱`     |
-| `hydro_symbol_git_dirty`  | string | Dirty repository symbol.        | `•`     |
-| `hydro_symbol_git_ahead`  | string | Ahead of your upstream symbol.  | `↑`     |
-| `hydro_symbol_git_behind` | string | Behind of your upstream symbol. | `↓`     |
+| Variable                       | Type   | Description                              | Default |
+| ------------------------------ | ------ | ---------------------------------------- | ------- |
+| `hydro_symbol_start`           | string | Prompt start symbol.                     |         |
+| `hydro_symbol_prompt`          | string | Prompt symbol.                           | `❱`     |
+| `hydro_symbol_git_dirty`       | string | Dirty repository symbol.                 | `•`     |
+| `hydro_symbol_git_ahead`       | string | Ahead of your upstream symbol.           | `↑`     |
+| `hydro_symbol_git_behind`      | string | Behind of your upstream symbol.          | `↓`     |
+| `hydro_symbol_vi_mode_default` | string | Symbol of the VI default mode indicator. | `N`     |
+| `hydro_symbol_vi_mode_insert`  | string | Symbol of the VI insert mode indicator.  | `I`     |
+| `hydro_symbol_vi_mode_replace` | string | Symbol of the VI replace mode indicator. | `R`     |
+| `hydro_symbol_vi_mode_visual`  | string | Symbol of the VI visual mode indicator.  | `V`     |
 
 ### Colors
 
