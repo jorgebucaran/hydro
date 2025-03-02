@@ -95,10 +95,10 @@ Modify variables using `set --universal` from the command line or `set --global`
 | `hydro_symbol_git_dirty`       | string | Dirty repository symbol.                 | `•`     |
 | `hydro_symbol_git_ahead`       | string | Ahead of your upstream symbol.           | `↑`     |
 | `hydro_symbol_git_behind`      | string | Behind of your upstream symbol.          | `↓`     |
-| `hydro_symbol_vi_mode_default` | string | Symbol of the VI default mode indicator. | `N`     |
-| `hydro_symbol_vi_mode_insert`  | string | Symbol of the VI insert mode indicator.  | `I`     |
-| `hydro_symbol_vi_mode_replace` | string | Symbol of the VI replace mode indicator. | `R`     |
-| `hydro_symbol_vi_mode_visual`  | string | Symbol of the VI visual mode indicator.  | `V`     |
+| `hydro_symbol_vi_mode_default` | string | Symbol of the vi default mode indicator. | `N`     |
+| `hydro_symbol_vi_mode_insert`  | string | Symbol of the vi insert mode indicator.  | `I`     |
+| `hydro_symbol_vi_mode_replace` | string | Symbol of the vi replace mode indicator. | `R`     |
+| `hydro_symbol_vi_mode_visual`  | string | Symbol of the vi visual mode indicator.  | `V`     |
 
 ### Colors
 
@@ -112,10 +112,10 @@ Modify variables using `set --universal` from the command line or `set --global`
 | `hydro_color_error`           | color | Color of the error segment.             | `$fish_color_error`  |
 | `hydro_color_prompt`          | color | Color of the prompt symbol.             | `$fish_color_normal` |
 | `hydro_color_duration`        | color | Color of the duration section.          | `$fish_color_normal` |
-| `hydro_color_vi_mode_default` | color | Color of the VI default mode indicator. | `$fish_color_normal` |
-| `hydro_color_vi_mode_insert`  | color | Color of the VI insert mode indicator.  | `$fish_color_normal` |
-| `hydro_color_vi_mode_replace` | color | Color of the VI replace mode indicator. | `$fish_color_normal` |
-| `hydro_color_vi_mode_visual`  | color | Color of the VI visual mode indicator.  | `$fish_color_normal` |
+| `hydro_color_vi_mode_default` | color | Color of the vi default mode indicator. | `$fish_color_normal` |
+| `hydro_color_vi_mode_insert`  | color | Color of the vi insert mode indicator.  | `$fish_color_normal` |
+| `hydro_color_vi_mode_replace` | color | Color of the vi replace mode indicator. | `$fish_color_normal` |
+| `hydro_color_vi_mode_visual`  | color | Color of the vi visual mode indicator.  | `$fish_color_normal` |
 
 ### Flags
 
