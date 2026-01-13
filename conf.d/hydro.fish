@@ -79,6 +79,10 @@ function _hydro_prompt --on-event fish_prompt
         test \$status -eq 1 ||
             count (command git ls-files --others --exclude-standard (command git rev-parse --show-toplevel)) >/dev/null && set info \"$hydro_symbol_git_dirty\"
 
+		# get information about stashes, if yes: add the count to the $info variable with its symbol
+        set --local stashes (command git rev-list --walk-reflogs --count refs/stash 2>/dev/null)
+        test -n \"\$stashes\" && test \"\$stashes\" -gt 0 && set info \"\$info $hydro_symbol_git_stash\$stashes\"
+
         for fetch in $hydro_fetch false
             command git rev-list --count --left-right @{upstream}...@ 2>/dev/null |
                 read behind ahead
@@ -132,6 +136,7 @@ end && hydro_multiline
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
+set --query hydro_symbol_git_stash || set --global hydro_symbol_git_stash ⚑
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑
 set --query hydro_symbol_git_behind || set --global hydro_symbol_git_behind ↓
 set --query hydro_multiline || set --global hydro_multiline false
