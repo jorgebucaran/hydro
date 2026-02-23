@@ -67,7 +67,7 @@ function _hydro_prompt --on-event fish_prompt
 
     fish --private --command "
         set branch (
-            command git symbolic-ref --short HEAD 2>/dev/null ||
+            command git branch --show-current 2>/dev/null ||
             command git describe --tags --exact-match HEAD 2>/dev/null ||
             command git rev-parse --short HEAD 2>/dev/null |
                 string replace --regex -- '(.+)' '@\$1'
