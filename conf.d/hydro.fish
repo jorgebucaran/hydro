@@ -20,7 +20,7 @@ function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on
     end
 
     set --global _hydro_pwd (
-        string replace --ignore-case -- ~ \~ $PWD |
+        string replace --ignore-case --regex -- (string join "" "^" ~) \~ $PWD |
         string replace -- "/$git_base/" /:/ |
         string replace --regex --all -- "(\.?[^/]{"(
             string replace --regex --all -- '^$' 1 "$fish_prompt_pwd_dir_length"
