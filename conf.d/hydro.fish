@@ -86,11 +86,11 @@ function _hydro_prompt --on-event fish_prompt
             switch \"\$behind \$ahead\"
                 case \" \" \"0 0\"
                 case \"0 *\"
-                    set upstream \" $hydro_symbol_git_ahead\$ahead\"
+                    set upstream \" $hydro_color_git_ahead$hydro_symbol_git_ahead\$ahead\"
                 case \"* 0\"
-                    set upstream \" $hydro_symbol_git_behind\$behind\"
+                    set upstream \" $hydro_color_git_behind$hydro_symbol_git_behind\$behind\"
                 case \*
-                    set upstream \" $hydro_symbol_git_ahead\$ahead $hydro_symbol_git_behind\$behind\"
+                    set upstream \" $hydro_color_git_ahead$hydro_symbol_git_ahead\$ahead $hydro_color_git_behind$hydro_symbol_git_behind\$behind\"
             end
 
             set --universal $_hydro_git \"\$branch\$info\$upstream \"
@@ -114,6 +114,8 @@ function _hydro_uninstall --on-event hydro_uninstall
 end
 
 set --global hydro_color_normal (set_color normal)
+set --global hydro_color_git_ahead (set_color green)
+set --global hydro_color_git_behind (set_color red)
 
 for color in hydro_color_{pwd,git,error,prompt,duration,start}
     function $color --on-variable $color --inherit-variable color
