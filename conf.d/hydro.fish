@@ -72,6 +72,8 @@ function _hydro_prompt --on-event fish_prompt
             command git rev-parse --short HEAD 2>/dev/null |
                 string replace --regex -- '(.+)' '@\$1'
         )
+        test -z \$fish_prompt_git_infix_length ||
+            set branch (string replace --regex -- '.{$fish_prompt_git_prefix_length}(.{$fish_prompt_git_infix_length}).*(.{$fish_prompt_git_suffix_length})' '\$1...\$2' \$branch)
 
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
@@ -129,6 +131,8 @@ function hydro_multiline --on-variable hydro_multiline
     end
 end && hydro_multiline
 
+set --query fish_prompt_git_prefix_length || set --global fish_prompt_git_prefix_length 0
+set --query fish_prompt_git_suffix_length || set --global fish_prompt_git_suffix_length 0
 set --query hydro_color_error || set --global hydro_color_error $fish_color_error
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
