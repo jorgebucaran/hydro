@@ -21,11 +21,11 @@ function _hydro_pwd --on-variable PWD --on-variable hydro_ignored_git_paths --on
 
     set --global _hydro_pwd (
         string replace --ignore-case -- ~ \~ $PWD |
-        string replace -- "/$git_base/" /:/ |
+        string replace -- "/$git_base/" /\x1e/ |
         string replace --regex --all -- "(\.?[^/]{"(
             string replace --regex --all -- '^$' 1 "$fish_prompt_pwd_dir_length"
         )"})[^/]*/" "\$1$path_sep" |
-        string replace -- : "$git_base" |
+        string replace -- \x1e "$git_base" |
         string replace --regex -- '([^/]+)$' "\x1b[1m\$1\x1b[22m" |
         string replace --regex --all -- '(?!^/$)/|^$' "\x1b[2m/\x1b[22m"
     )
