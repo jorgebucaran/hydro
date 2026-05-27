@@ -69,6 +69,22 @@ Display the current bindings mode.
 <i>R</i> <b>~</b> ❱ ⎢
 </pre>
 
+Support for [transient prompt](https://fishshell.com/docs/current/prompt.html#transient-prompt) (fish 4.0+). Declutters scrollback by replacing executed prompts with a minimal version.
+
+<pre>
+❱ git commit -am Hotfix
+❱ git pull --rebase && git push
+~/p/<b>hydro</b> main ❱ ⎢
+</pre>
+
+> Enable with `set -g fish_transient_prompt 1`. Customize the style with [`hydro_transient`](#configuration).
+
+| `hydro_transient` | Scrollback appearance |
+| ----------------- | --------------------- |
+| `prompt` (default)| `❱ command`           |
+| `basename`        | `hydro ❱ command`     |
+| `pwd`             | `~/p/hydro ❱ command` |
+
 ## Performance
 
 Blazing fast would be an understatement considering that the [LLVM repo](https://github.com/llvm/llvm-project) has over 375,000 commits!
@@ -111,10 +127,11 @@ Modify variables using `set --universal` from the command line or `set --global`
 
 ### Flags
 
-| Variable          | Type    | Description                                  | Default |
-| ----------------- | ------- | -------------------------------------------- | ------- |
-| `hydro_fetch`     | boolean | Fetch git remote in the background.          | `false` |
-| `hydro_multiline` | boolean | Display prompt character on a separate line. | `false` |
+| Variable          | Type    | Description                                  | Default  |
+| ----------------- | ------- | -------------------------------------------- | -------- |
+| `hydro_fetch`     | boolean | Fetch git remote in the background.          | `false`  |
+| `hydro_multiline` | boolean | Display prompt character on a separate line. | `false`  |
+| `hydro_transient` | string  | Transient prompt style: `prompt`, `basename`, or `pwd`. | `prompt` |
 
 ### Misc
 

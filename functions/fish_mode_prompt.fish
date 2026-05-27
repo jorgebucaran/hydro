@@ -1,4 +1,5 @@
 function fish_mode_prompt
+    contains -- --final-rendering $argv && return
     if test "$fish_key_bindings" != fish_default_key_bindings
         set --local vi_mode_color
         set --local vi_mode_symbol
