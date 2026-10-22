@@ -66,13 +66,18 @@ function _hydro_prompt --on-event fish_prompt
     set --query _hydro_skip_git_prompt && set $_hydro_git && return
 
     fish --private --command "
-        set branch (
-            command git branch --show-current 2>/dev/null ||
-            command git describe --tags --exact-match HEAD 2>/dev/null ||
-            command git rev-parse --short HEAD 2>/dev/null |
-                string replace --regex -- '(.+)' '@\$1'
-        )
+        set branch (command git branch --show-current 2>/dev/null)
 
+        if test -z \"\$branch\"
+            set branch (command git describe --tags --exact-match HEAD 2>/dev/null)
+        end
+
+        if test -z \"\$branch\"
+            set branch (
+                command git rev-parse --short HEAD 2>/dev/null |
+                    string replace --regex -- '(.+)' '@\$1'
+            )
+        end
         test -z \"\$$_hydro_git\" && set --universal $_hydro_git \"\$branch \"
 
         command git diff-index --quiet HEAD 2>/dev/null
